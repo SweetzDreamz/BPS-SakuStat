@@ -1,27 +1,21 @@
 <?php
-// index.php
-include "config/koneksi.php"; // Hubungkan ke database
-include "config/functions.php"; // Hubungkan fungsi
+include "config/koneksi.php";
 
-// Bagian Template Atas
 include "template/header.php";
 include "template/navbar.php";
 
-
-// Logika Routing Sederhana
-$page = isset($_GET['p']) ? $_GET['p'] : 'home'; // Default ke 'home'
+$page = isset($_GET['p']) ? $_GET['p'] : 'home'; 
 
 if ($page == "" || $page == "home") {
     include "template/jumbotron.php";
 }
 
-// Gunakan switch case agar lebih rapi daripada if-else bertumpuk
 switch ($page) {
     case 'home':
         include "pages/home.php";
         break;
     case 'kategori':
-        include "pages/category.php";
+        include "pages/kategori.php";
         break;
     case 'baca':
         include "pages/read.php";
@@ -31,6 +25,5 @@ switch ($page) {
         break;
 }
 
-// Bagian Template Bawah
 include "template/footer.php";
 ?>

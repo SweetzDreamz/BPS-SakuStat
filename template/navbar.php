@@ -34,6 +34,20 @@
           <a class="nav-link" href="index.php?p=pedoman">Pedoman</a>
         </li>
 
+        <li class="nav-item ms-lg-3">
+            <a class="btn btn-light rounded-circle text-primary shadow-sm d-flex align-items-center justify-content-center" 
+               href="admin/login.php" 
+               style="width: 35px; height: 35px;" 
+               data-bs-toggle="tooltip" 
+               data-bs-placement="bottom" 
+               title="Login Admin">
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </li>
+
+        </ul>
+    </div>
+
       </ul>
     </div>
   </div>

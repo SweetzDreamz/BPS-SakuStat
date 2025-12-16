@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator | SakuStat</title>
+    
+    <link rel="icon" type="image/png" href="../assets/img/bps.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="../assets/css/admin.css">
+
+</head>
+
+<body class="admin-panel">
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header d-flex align-items-center">
+            <img src="../assets/img/bps.png" alt="Logo" width="40" class="me-2">
+            <div>
+                <h5 class="mb-0 fw-bold">SAKU STAT</h5>
+                <small class="text-white-50" style="font-size: 0.75rem;">Administrator Panel</small>
+            </div>
+        </div>
+
+        <ul class="list-unstyled components">
+            <?php $page = isset($_GET['page']) ? $_GET['page'] : ''; ?>
+
+            <li class="<?php echo ($page == '' || $page == 'dashboard') ? 'active' : ''; ?>">
+                <a href="index.php">
+                    <i class="fa-solid fa-gauge-high"></i> Dashboard
+                </a>
+            </li>
+
+            <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Master Data</li>
+
+            <li class="<?php echo ($page == 'kegiatan') ? 'active' : ''; ?>">
+                <a href="index.php?page=kegiatan">
+                    <i class="fa-solid fa-list-check"></i> Data Kegiatan
+                </a>
+            </li>
+
+            <li class="<?php echo ($page == 'kategori') ? 'active' : ''; ?>">
+                <a href="index.php?page=kategori">
+                    <i class="fa-solid fa-tags"></i> Data Kategori
+                </a>
+            </li>
+            
+            <li class="<?php echo ($page == 'data-pengguna.php') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-pengguna">
+                    <i class="fa-solid fa-users"></i> Data Pengguna
+                </a>
+            </li>
+        </ul>
+
+        <div class="logout-box mt-auto">
+            <a href="logout.php" class="btn btn-danger w-100 shadow-sm btn-sm">
+                <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+            </a>
+        </div>
+    </nav>
+
+    <div id="content">
+        
+        <nav class="navbar navbar-expand-lg navbar-admin mb-4">
+            <div class="container-fluid">
+                
+                <button type="button" id="sidebarCollapse" class="btn btn-light text-primary shadow-sm">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 35px; height: 35px;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <span class="fw-bold me-1">
+                                    <?php echo isset($_SESSION['nama']) ? $_SESSION['nama'] : 'Admin'; ?>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="../index.php" target="_blank"><i class="fa-solid fa-globe me-2 text-muted"></i> Lihat Website</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>

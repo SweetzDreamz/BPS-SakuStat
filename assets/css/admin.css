@@ -1,0 +1,151 @@
+/* 1. STYLING HALAMAN LOGIN */
+
+body.login-page {
+  background-color: var(--primary-color) !important;
+
+  background: linear-gradient(to top, rgba(5, 30, 80, 0.95), rgba(13, 110, 253, 0.75)), url('../img/bg1.png');
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 2rem 2rem !important;
+  position: relative;
+
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.card-login {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-header {
+  background-color: #f8f9fa;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.login-page .form-control {
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-login {
+  border-radius: 50px;
+  padding: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* 2. STYLING HALAMAN ADMIN DASHBOARD */
+
+body.admin-panel {
+  overflow-x: hidden;
+  background-color: #f4f6f9;
+  font-family: 'Poppins', sans-serif;
+  height: auto;
+  display: block;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  background: #052c65;
+  color: #fff;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #042352;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+
+#sidebar ul li a {
+  padding: 15px 20px;
+  font-size: 1rem;
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+#sidebar ul li a:hover,
+#sidebar ul li.active > a {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #0d6efd;
+}
+
+#sidebar ul li a i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.logout-box {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+.navbar-admin {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+footer {
+  background-color: #052c65;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+}

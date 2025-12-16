@@ -1,9 +1,7 @@
-/* Import Google Fonts - Poppins untuk tampilan modern */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
-  /* Palet Warna SAKU STAT (Bisa disesuaikan dengan logo Anda) */
-  --primary-color: #0d6efd; /* Biru Bootstrap default, atau ganti hex code lain */
+  --primary-color: #0d6efd;
   --primary-dark: #0a58ca;
   --accent-color: #f8f9fa;
   --text-dark: #333333;
@@ -11,18 +9,16 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
-  background-color: #f5f7fa; /* Background halaman agak abu-abu lembut */
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
   color: var(--text-dark);
 }
 
 /* --- 1. NAVBAR STYLING --- */
 .navbar {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important; /* Gradasi halus */
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
   padding-top: 5px;
   padding-bottom: 5px;
-
-  /* MENAMBAHKAN GARIS AKSEN PUTIH DI BAWAH */
   border-bottom: 2px solid #ffffff;
 }
 
@@ -34,7 +30,7 @@ body {
 }
 
 .navbar-brand i {
-  color: #ffffff; /* Warna icon logo */
+  color: #ffffff;
 }
 
 .nav-link {
@@ -44,7 +40,7 @@ body {
 
 .nav-link:hover {
   color: #fff !important;
-  transform: translateY(-2px); /* Efek naik sedikit saat di-hover */
+  transform: translateY(-2px);
 }
 
 /* Dropdown Menu styling */
@@ -61,56 +57,45 @@ body {
 
 /* --- 2. JUMBOTRON / HERO SECTION --- */
 .bg-light {
-  /* 1. Set background dasar */
   background-color: var(--primary-color) !important;
 
-  /* 2. GRADASI BIRU GELAP KE TERANG (Linear Gradient)
-     - to right: Arah gradasi dari kiri (gelap) ke kanan (terang).
-     - rgba(5, 30, 80, 0.9): Biru sangat gelap (Navy) dengan transparansi 90%.
-     - rgba(13, 110, 253, 0.75): Biru terang (Primary) dengan transparansi 75%.
-  */
   background: linear-gradient(to top, rgba(5, 30, 80, 0.95), rgba(13, 110, 253, 0.75)), url('../img/bg1.png');
 
-  /* Pengaturan agar gambar pas */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  /* Padding dan Layout */
   padding: 2rem 2rem !important;
   position: relative;
   overflow: hidden;
 }
 
-/* Mengubah warna Judul menjadi Putih agar kontras */
 .jumbotron h1 {
   font-weight: 800;
-  color: #ffffff; /* Putih */
+  color: #ffffff;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sedikit bayangan agar makin jelas */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Mengubah warna sub-judul/paragraf menjadi putih agak abu (aksen) */
 .jumbotron p {
   font-weight: 300;
-  color: #f8f9fa; /* Warna putih gading */
+  color: #f8f9fa;
 }
 
 /* --- 3. SEARCH BAR STYLING --- */
-/* Membuat search bar terlihat lebih 'bold' dan fokus */
 .input-group-lg > .form-control {
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
   border: 2px solid #e9ecef;
   padding-left: 1.5rem;
   font-size: 1.1rem;
-  box-shadow: none; /* Hilangkan shadow default */
+  box-shadow: none;
   transition: all 0.3s ease;
 }
 
 .input-group-lg > .form-control:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15); /* Efek glow halus saat diketik */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
 }
 
 .input-group-lg > .btn {
@@ -127,8 +112,8 @@ body {
 footer {
   background-color: #212529;
   color: #adb5bd;
-  margin-top: auto; /* Agar footer selalu di bawah jika konten sedikit */
-  border-top: 4px solid var(--primary-color); /* Garis aksen di atas footer */
+  margin-top: auto;
+  border-top: 4px solid var(--primary-color);
 }
 
 footer strong {
