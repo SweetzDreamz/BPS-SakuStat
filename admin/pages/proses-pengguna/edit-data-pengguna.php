@@ -5,8 +5,6 @@ if (isset($_POST['edit_user'])) {
     $nip_lama = $_POST['nip_lama']; 
     $nip_baru = $_POST['nip'];
     $nama     = $_POST['nama'];
-    $email    = $_POST['email'];
-    $role     = $_POST['role'];
     $password = $_POST['password'];
 
     if (!empty($password)) {
@@ -14,17 +12,13 @@ if (isset($_POST['edit_user'])) {
         $query = "UPDATE tb_user SET 
                     nip='$nip_baru', 
                     nama='$nama', 
-                    email='$email', 
-                    role='$role', 
                     password='$password' 
                   WHERE nip='$nip_lama'";
     } else {
 
         $query = "UPDATE tb_user SET 
                     nip='$nip_baru', 
-                    nama='$nama', 
-                    email='$email', 
-                    role='$role' 
+                    nama='$nama',
                   WHERE nip='$nip_lama'";
     }
 

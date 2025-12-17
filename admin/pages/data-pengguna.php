@@ -9,7 +9,7 @@
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahUser">
                 <i class="fa-solid fa-plus me-1"></i> Tambah User
             </button>
-        </div>
+        </div>  
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered display" style="width:100%">
@@ -18,8 +18,6 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Email</th>
-                            <th>Role</th>
                             <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
@@ -34,16 +32,6 @@
                                 <td><?= $no++; ?></td>
                                 <td><?= $dataU['nip']; ?></td>
                                 <td class="text-capitalize"><?= $dataU['nama']; ?></td>
-                                <td><?= $dataU['email']; ?></td>
-                                <td>
-                                    <?php 
-                                    if($dataU['role'] == 'Admin'){
-                                        echo '<span class="badge bg-danger">Admin</span>';
-                                    } else {
-                                        echo '<span class="badge bg-secondary">User</span>';
-                                    }
-                                    ?>
-                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm text-white me-1" 
                                             data-bs-toggle="modal" 
@@ -52,9 +40,9 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </button>
                                     
-                                    <a href="pages/proses/del-data-user.php?id=<?= $dataU['nip']; ?>" 
-                                       class="btn btn-danger btn-sm btn-hapus" 
-                                       title="Hapus">
+                                        <a href="pages/proses-pengguna/del-data-pengguna.php?id=<?= $dataU['nip']; ?>" 
+                                        class="btn btn-danger btn-sm btn-hapus" 
+                                        title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
@@ -63,11 +51,11 @@
                             <div class="modal fade" id="edit-user<?= $dataU['nip']; ?>" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header bg-warning text-white">
+                                        <div class="modal-header bg-primary text-white">
                                             <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Pengguna</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <form action="pages/proses/edit-user.php" method="POST">
+                                        <form action="pages/proses-pengguna/edit-data-pengguna.php" method="POST">
                                             <div class="modal-body">
                                                 <input type="hidden" name="nip_lama" value="<?= $dataU['nip']; ?>">
                                                 
@@ -80,19 +68,8 @@
                                                     <input type="text" name="nama" class="form-control" value="<?= $dataU['nama']; ?>" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label fw-bold">Email</label>
-                                                    <input type="email" name="email" class="form-control" value="<?= $dataU['email']; ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Role</label>
-                                                    <select name="role" class="form-select" required>
-                                                        <option value="User" <?= ($dataU['role'] == 'User') ? 'selected' : ''; ?>>User</option>
-                                                        <option value="Admin" <?= ($dataU['role'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Password Baru <small class="text-muted fw-normal">(Kosongkan jika tidak ingin mengubah)</small></label>
-                                                    <input type="password" name="password" class="form-control" placeholder="******">
+                                                    <label class="form-label fw-bold">Password Baru <small class="text-muted fw-normal">(Biarkan jika tidak ingin mengubah)</small></label>
+                                                    <input type="password" name="password" class="form-control" value="<?= $dataU['password']; ?>">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -111,28 +88,35 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable();
-
-        $('.btn-hapus').on('click', function(e) {
-            e.preventDefault();
-            const href = $(this).attr('href');
-
-            Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Data pengguna ini akan dihapus permanen!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#d33',
-                cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.location.href = href;
-                }
-            });
-        });
-    });
-</script>
+<div class="modal fade" id="tambahUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">
+                    <i class="fa-solid fa-user-plus me-2"></i>Tambah Pengguna Baru
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="pages/proses-pengguna/add-data-pengguna.php" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">NIP</label>
+                        <input type="number" name="nip" class="form-control" placeholder="Masukkan NIP" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nama Lengkap</label>
+                        <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Lengkap" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="********" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="add_user" class="btn btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

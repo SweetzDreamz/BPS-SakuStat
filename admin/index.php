@@ -26,6 +26,7 @@ switch ($page) {
 
     case 'data-pengguna': 
         include "pages/data-pengguna.php";
+        break;
     
     default:
         echo "<div class='container-fluid px-4 mt-4'><h3>Halaman tidak ditemukan!</h3></div>";

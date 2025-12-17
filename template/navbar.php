@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-lg">
-  <div class="container">
+  <div class="container-fluid px-5">
     <a class="navbar-brand fw-bold" href="index.php">
         <img src="assets/img/bps.png" alt="contoh" width="30" height="30">
         <i class="fa-solid fa-chart-simple me-2"></i>BPS KOTA BOGOR
@@ -21,15 +21,22 @@
             Kategori
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="index.php?p=kategori&id=deskriptif">Statistik Sosial</a></li>
-            <li><a class="dropdown-item" href="index.php?p=kategori&id=inferensial">Statistik Produksi</a></li>
-            <li><a class="dropdown-item" href="index.php?p=kategori&id=inferensial">Statistik Distribusi dan Jasa</a></li>
-            <li><a class="dropdown-item" href="index.php?p=kategori&id=inferensial">Neraca Wilayah dan Analisis</a></li>
+            <?php
+              $queryKat = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori DESC");
+
+              while ($kat = mysqli_fetch_assoc($queryKat)) {
+            ?>
+                <li>
+                    <a class="dropdown-item" href="index.php?p=kategori&id=<?= $kat['id_kategori']; ?>">
+                        <?= $kat['nama_kategori']; ?>
+                    </a>
+                </li>
+            <?php } ?>
+
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="index.php?p=kategori&id=all">Lihat Semua</a></li>
           </ul>
         </li>
-
         <li class="nav-item">
           <a class="nav-link" href="index.php?p=pedoman">Pedoman</a>
         </li>
@@ -44,9 +51,6 @@
                 <i class="fa-solid fa-user"></i>
             </a>
         </li>
-
-        </ul>
-    </div>
 
       </ul>
     </div>

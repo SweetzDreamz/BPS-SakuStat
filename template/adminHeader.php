@@ -66,7 +66,7 @@
         </ul>
 
         <div class="logout-box mt-auto">
-            <a href="logout.php" class="btn btn-danger w-100 shadow-sm btn-sm">
+            <a href="logout.php" class="btn btn-danger w-100 shadow-sm btn-sm btn-logout">
                 <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
             </a>
         </div>
@@ -95,7 +95,7 @@
                             <ul class="dropdown-menu dropdown-menu-end border-0 shadow" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="../index.php" target="_blank"><i class="fa-solid fa-globe me-2 text-muted"></i> Lihat Website</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Logout</a></li>
+                                <li><a class="dropdown-item text-danger btn-logout" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Logout</a></li>
                             </ul>
                         </li>
                     </ul>
