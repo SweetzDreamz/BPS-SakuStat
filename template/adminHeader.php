@@ -46,21 +46,32 @@
 
             <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Master Data</li>
 
-            <li class="<?php echo ($page == 'kegiatan') ? 'active' : ''; ?>">
-                <a href="index.php?page=kegiatan">
+            <li class="<?php echo ($page == 'data-kegiatan') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kegiatan">
                     <i class="fa-solid fa-list-check"></i> Data Kegiatan
                 </a>
             </li>
 
-            <li class="<?php echo ($page == 'kategori') ? 'active' : ''; ?>">
-                <a href="index.php?page=kategori">
+            <li class="<?php echo ($page == 'data-kategori') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kategori">
                     <i class="fa-solid fa-tags"></i> Data Kategori
                 </a>
             </li>
+
+            <li class="<?php echo ($page == 'data-pedoman') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-pedoman">
+                    <i class="fa-solid fa-book"></i> Data Pedoman
+                </a>
+            </li>
             
-            <li class="<?php echo ($page == 'data-pengguna.php') ? 'active' : ''; ?>">
+            <li class="<?php echo ($page == 'data-pengguna') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-pengguna">
                     <i class="fa-solid fa-users"></i> Data Pengguna
+                </a>
+            </li>
+            <li class="<?php echo ($page == 'feedback') ? 'active' : ''; ?>">
+                <a href="index.php?page=feedback">
+                    <i class="fa-solid fa-comments"></i> Feedback
                 </a>
             </li>
         </ul>

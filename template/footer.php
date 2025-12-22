@@ -1,5 +1,5 @@
 <footer class="bg-dark text-white pt-5 pb-4 mt-auto" style="border-top: 4px solid var(--primary-color);">
-    <div class="container">
+    <div class="container-fluid px-5">
         <div class="row g-4 justify-content-between">
             
             <div class="col-lg-4 col-md-6">

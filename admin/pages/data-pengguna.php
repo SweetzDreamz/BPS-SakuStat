@@ -3,7 +3,7 @@
     <div class="card mb-4 shadow-sm">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div>
-                <i class="fas fa-table me-1"></i>
+                <i class="fas fa-users me-1"></i>
                 <b>Data Pengguna</b>
             </div>
             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahUser">

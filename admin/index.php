@@ -16,17 +16,26 @@ switch ($page) {
         include "pages/dashboard.php"; 
         break;
 
-    case 'kegiatan':
+    case 'data-kegiatan':
         include "pages/data-kegiatan.php";
         break;
 
-    case 'kategori':
+    case 'data-kategori':
         include "pages/data-kategori.php";
+        break;
+
+    case 'data-pedoman':
+        include "pages/data-pedoman.php";
         break;
 
     case 'data-pengguna': 
         include "pages/data-pengguna.php";
         break;
+
+    case 'feedback':
+        include "pages/data-feedback.php";
+        break;
+
     
     default:
         echo "<div class='container-fluid px-4 mt-4'><h3>Halaman tidak ditemukan!</h3></div>";
