@@ -6,6 +6,8 @@ include "template/navbar.php";
 
 $page = isset($_GET['p']) ? $_GET['p'] : 'home'; 
 
+include "template/breadcrumb.php"; 
+
 if ($page == "" || $page == "home") {
     include "template/jumbotron.php";
 }
@@ -14,14 +16,19 @@ switch ($page) {
     case 'home':
         include "pages/home.php";
         break;
-    case 'kategori':
-        include "pages/kategori.php";
+    case 'hasil-pencarian':
+        include "pages/hasil-pencarian.php";
         break;
-    case 'baca':
-        include "pages/read.php";
+    case 'detail-kegiatan':
+        include "pages/detail-kegiatan.php";
+        break;
+    case 'pedoman': 
+        include "pages/pedoman.php";
         break;
     default:
-        echo "<div class='container'><h3>Halaman tidak ditemukan!</h3></div>";
+        echo "<div class='container py-5 text-center'>
+                <h3>Halaman tidak ditemukan!</h3>
+              </div>";
         break;
 }
 

@@ -46,15 +46,21 @@
 
             <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Master Data</li>
 
+            <li class="<?php echo ($page == 'data-kategori') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kategori">
+                    <i class="fa-solid fa-tags"></i> Data Kategori
+                </a>
+            </li>
+
             <li class="<?php echo ($page == 'data-kegiatan') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kegiatan">
                     <i class="fa-solid fa-list-check"></i> Data Kegiatan
                 </a>
             </li>
 
-            <li class="<?php echo ($page == 'data-kategori') ? 'active' : ''; ?>">
-                <a href="index.php?page=data-kategori">
-                    <i class="fa-solid fa-tags"></i> Data Kategori
+            <li class="<?php echo ($page == 'data-kasusbatas') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kasusbatas">
+                    <i class="fa-solid fa-scale-balanced"></i> Data Kasus Batas
                 </a>
             </li>
 

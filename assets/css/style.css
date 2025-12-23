@@ -19,7 +19,7 @@ body {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
   padding-top: 5px;
   padding-bottom: 5px;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
 
 .navbar-brand {
@@ -56,7 +56,7 @@ body {
 }
 
 /* --- 2. JUMBOTRON / HERO SECTION --- */
-.bg-light {
+.bg-dasar {
   background-color: var(--primary-color) !important;
 
   background: linear-gradient(to top, rgba(5, 30, 80, 0.95), rgba(13, 110, 253, 0.75)), url('../img/bg1.png');
@@ -84,8 +84,8 @@ body {
 
 /* --- 3. SEARCH BAR STYLING --- */
 .input-group-lg > .form-control {
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px !important;
+  border-bottom-left-radius: 50px !important;
   border: 2px solid #e9ecef;
   padding-left: 1.5rem;
   font-size: 1.1rem;
@@ -99,8 +99,8 @@ body {
 }
 
 .input-group-lg > .btn {
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px !important;
+  border-bottom-right-radius: 50px !important;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   font-weight: 600;

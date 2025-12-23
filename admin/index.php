@@ -36,7 +36,10 @@ switch ($page) {
         include "pages/data-feedback.php";
         break;
 
-    
+    case 'data-kasusbatas':
+        include "pages/data-kasusbatas.php";
+        break;
+
     default:
         echo "<div class='container-fluid px-4 mt-4'><h3>Halaman tidak ditemukan!</h3></div>";
         break;

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-lg">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" >
   <div class="container-fluid px-5">
     <a class="navbar-brand fw-bold" href="index.php">
         <img src="assets/img/bps.png" alt="contoh" width="30" height="30">
@@ -21,20 +21,19 @@
             Kategori
           </a>
           <ul class="dropdown-menu">
-            <?php
-              $queryKat = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori DESC");
-
-              while ($kat = mysqli_fetch_assoc($queryKat)) {
-            ?>
-                <li>
-                    <a class="dropdown-item" href="index.php?p=kategori&id=<?= $kat['id_kategori']; ?>">
-                        <?= $kat['nama_kategori']; ?>
-                    </a>
-                </li>
-            <?php } ?>
-
+              <?php
+              $sql_nav = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori DESC");
+              while($nav = mysqli_fetch_assoc($sql_nav)){
+              ?>
+                  <li>
+                      <a class="dropdown-item" href="index.php?p=hasil-pencarian&kategori=<?= $nav['id_kategori']; ?>">
+                          <?= $nav['nama_kategori']; ?>
+                      </a>
+                  </li>
+                  
+              <?php } ?>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="index.php?p=kategori&id=all">Lihat Semua</a></li>
+            <li><a class="dropdown-item" href="index.php?p=hasil-pencarian">Lihat Semua</a></li>
           </ul>
         </li>
         <li class="nav-item">

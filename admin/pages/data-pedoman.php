@@ -52,9 +52,7 @@
                                 </td>
                                 <td><?= $data['nama_pedoman']; ?></td>
                                 <td>
-                                    <span class="badge bg-info text-dark">
-                                        <?= $data['nama_kategori']; ?>
-                                    </span>
+                                    <?= $data['nama_kategori']; ?>
                                 </td>
                                 <td>
                                     <a href="<?= $data['link_pedoman']; ?>" target="_blank" class="btn btn-sm btn-outline-primary">

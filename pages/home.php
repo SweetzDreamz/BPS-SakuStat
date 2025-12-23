@@ -1,15 +1,49 @@
+<?php
+
+// 1. LOGIKA PENGUNJUNG WEBSITE
+$ip      = $_SERVER['REMOTE_ADDR'];
+$tanggal = date('Y-m-d');
+
+// Cek apakah IP ini sudah berkunjung HARI INI?
+$cek_ip = mysqli_query($koneksi, "SELECT * FROM tb_pengunjung WHERE ip_address='$ip' AND tanggal='$tanggal'");
+
+if (mysqli_num_rows($cek_ip) == 0) {
+    // Jika belum ada hari ini, simpan ke database
+    mysqli_query($koneksi, "INSERT INTO tb_pengunjung (ip_address, tanggal) VALUES ('$ip', '$tanggal')");
+}
+
+
+// 2. HITUNG TOTAL DATA UNTUK CARD
+// A. Hitung Total Pengunjung (Semua waktu)
+$q_pengunjung   = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM tb_pengunjung");
+$dt_pengunjung  = mysqli_fetch_assoc($q_pengunjung);
+$total_pengunjung = $dt_pengunjung['total'];
+
+// B. Hitung Total Kegiatan (Dari tb_kegiatan)
+$q_kegiatan     = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM tb_kegiatan");
+$dt_kegiatan    = mysqli_fetch_assoc($q_kegiatan);
+$total_kegiatan = $dt_kegiatan['total'];
+
+// C. Hitung Total Kasus Batas (Dari tb_kasusbatas)
+$q_kasus        = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM tb_kasusbatas");
+$dt_kasus       = mysqli_fetch_assoc($q_kasus);
+$total_kasus    = $dt_kasus['total'];
+?>
+
 <div class="container-fluid px-5 py-4">  
     
     <div class="row g-4 mb-5"> 
         
         <div class="col-md-4 col-lg-3">
-            <div class="d-flex flex-column gap-3"> 
+            <div class="d-flex flex-column gap-3">
                 
                 <div class="card border-0 shadow-sm" style="background-color: #052c65;">
                     <div class="card-body d-flex align-items-center p-3">
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Pengunjung</h6>
-                            <h3 class="text-light fw-bold mb-0">1,240</h3>
+                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Total Pengunjung</h6>
+                            <h3 class="text-light fw-bold mb-0">
+                                <?= number_format($total_pengunjung); ?>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -17,8 +51,10 @@
                 <div class="card border-0 shadow-sm bg-primary">
                     <div class="card-body d-flex align-items-center p-3">
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Total Survey</h6>
-                            <h3 class="text-light fw-bold mb-0">12</h3>
+                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Total Kegiatan</h6>
+                            <h3 class="text-light fw-bold mb-0">
+                                <?= number_format($total_kegiatan); ?>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -26,8 +62,10 @@
                 <div class="card border-0 shadow-sm" style="background-color: #4db8ff;">
                     <div class="card-body d-flex align-items-center p-3">
                         <div class="flex-grow-1 ms-3">
-                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Kasus Batas</h6>
-                            <h3 class="text-light mb-0 fw-bold">85</h3>
+                            <h6 class="text-light mb-0 small text-uppercase fw-bold">Total Kasus Batas</h6>
+                            <h3 class="text-light mb-0 fw-bold">
+                                <?= number_format($total_kasus); ?>
+                            </h3>
                         </div>
                     </div>
                 </div>

@@ -51,9 +51,7 @@
                                 <td><?= $data['responden']; ?></td>
                                 <td><?= $data['level_estimasi']; ?></td>
                                 <td>
-                                    <span class="badge bg-info text-dark">
-                                        <?= $data['nama_kategori']; ?>
-                                    </span>
+                                    <?= $data['nama_kategori']; ?>
                                 </td>
                                 <td>
                                     <?php if($data['nama_pedoman']) { ?>
