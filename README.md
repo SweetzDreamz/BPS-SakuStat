@@ -1,6 +1,8 @@
 # 📘 SakuStat - Referensi Digital Kasus Batas Statistik
 
-![BPS Logo](assets/img/bps.png)
+<img src="assets/img/bps.png" alt="BPS Logo" width="150">
+
+<br>
 
 **SakuStat** adalah aplikasi berbasis web yang dikembangkan untuk **Badan Pusat Statistik (BPS) Kota Bogor**. Aplikasi ini berfungsi sebagai "saku digital" atau media referensi bagi petugas statistik lapangan untuk menemukan solusi atas **kasus batas (boundary cases)** yang sering ditemui saat melakukan pendataan/survei.
 
