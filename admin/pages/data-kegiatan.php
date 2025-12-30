@@ -40,23 +40,30 @@
                         while ($data = mysqli_fetch_assoc($sql)) { 
                         ?>
                             <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $data['id_kegiatan']; ?></td>
-                                <td><?= $data['nama_kegiatan']; ?></td>
+                                <td><span class="small"><?= $no++; ?></span></td>
+                                
+                                <td><span class="small"><?= $data['id_kegiatan']; ?></span></td>
+                                
+                                <td><span class="small"><?= $data['nama_kegiatan']; ?></span></td>
+                                
                                 <td>
-                                    <small class="text-muted">
+                                    <span class="small">
                                         <?= substr($data['deskripsi_kegiatan'], 0, 50); ?>...
-                                    </small>
+                                    </span>
                                 </td>
-                                <td><?= $data['responden']; ?></td>
-                                <td><?= $data['level_estimasi']; ?></td>
+                                
+                                <td><span class="small"><?= $data['responden']; ?></span></td>
+                                
+                                <td><span class="small"><?= $data['level_estimasi']; ?></span></td>
+                                
+                                <td><span class="small"><?= $data['nama_kategori']; ?></span></td>
+                                
                                 <td>
-                                    <?= $data['nama_kategori']; ?>
-                                </td>
-                                <td>
-                                    <?php if($data['nama_pedoman']) { ?>
-                                        <?= $data['nama_pedoman']; ?>
-                                    <?php } else { echo "-"; } ?>
+                                    <span class="small">
+                                        <?php if($data['nama_pedoman']) { ?>
+                                            <?= $data['nama_pedoman']; ?>
+                                        <?php } else { echo "-"; } ?>
+                                    </span>
                                 </td>
                                 
                                 <td class="text-center">

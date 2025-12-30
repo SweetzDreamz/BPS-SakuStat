@@ -82,7 +82,7 @@ $total_kasus    = $dt_kasus['total'];
                     <h2 class="fw-bold text-primary mb-0">Apa itu SAKU STAT?</h2>
                 </div>
                 
-                <p class="lead text-dark mb-0 fs-6" style="line-height: 1.8; text-align: justify;">
+                <p class="lead text-dark mb-0 fs-5" style="line-height: 1.8; text-align: justify;">
                     <strong>SakuStat</strong> adalah media referensi digital yang berisi kumpulan kasus batas yang sering ditemui oleh petugas statistik di lapangan. Aplikasi ini dibuat agar petugas dapat mengambil keputusan cepat dan tepat saat menghadapi kasus non-standar, memahami definisi operasional secara konsisten, mengurangi kesalahan pencatatan, dan meningkatkan kualitas data lapangan.
                 </p>
             </div>
@@ -108,7 +108,7 @@ $total_kasus    = $dt_kasus['total'];
                                 </div>
                                 <div>
                                     <h6 class="fw-bold">Pegangan Praktis</h6>
-                                    <p class="text-muted small mb-0">Menyediakan pegangan praktis bagi petugas statistik lapangan dalam menghadapi kasus batas yang sering menimbulkan keraguan.</p>
+                                    <p class="text-muted mb-0">Menyediakan pegangan praktis bagi petugas statistik lapangan dalam menghadapi kasus batas yang sering menimbulkan keraguan.</p>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +120,7 @@ $total_kasus    = $dt_kasus['total'];
                                 </div>
                                 <div>
                                     <h6 class="fw-bold">Konsistensi Data</h6>
-                                    <p class="text-muted small mb-0">Menyamakan pemahaman dan interpretasi petugas, sehingga hasil pencacahan lebih konsisten dan akurat.</p>
+                                    <p class="text-muted mb-0">Menyamakan pemahaman dan interpretasi petugas, sehingga hasil pencacahan lebih konsisten dan akurat.</p>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@ $total_kasus    = $dt_kasus['total'];
                                 </div>
                                 <div>
                                     <h6 class="fw-bold">Efisiensi Keputusan</h6>
-                                    <p class="text-muted small mb-0">Mempercepat proses pengambilan keputusan di lapangan dengan menghadirkan referensi yang mudah diakses secara digital.</p>
+                                    <p class="text-muted mb-0">Mempercepat proses pengambilan keputusan di lapangan dengan menghadirkan referensi yang mudah diakses secara digital.</p>
                                 </div>
                             </div>
                         </div>

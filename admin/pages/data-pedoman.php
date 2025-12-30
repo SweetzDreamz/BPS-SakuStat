@@ -1,5 +1,4 @@
 <div class="container-fluid px-4">
-
     <div class="card mb-4 shadow-sm">
         <div class="card-header d-flex justify-content-between align-items-center">
             <div>
@@ -43,15 +42,15 @@
                             }
                         ?>
                             <tr>
-                                <td><?= $no++; ?></td>
-                                <td>
+                                <td class="small"><?= $no++; ?></td>
+                                <td class="small">
                                     <?= $data['id_pedoman']; ?>
                                 </td>
                                 <td class="text-center">
                                     <img src="<?= $imgSrc; ?>" alt="Cover" style="width: 50px; height: 70px; object-fit: cover; border-radius: 5px; border: 1px solid #ddd;">
                                 </td>
-                                <td><?= $data['nama_pedoman']; ?></td>
-                                <td>
+                                <td class="small"><?= $data['nama_pedoman']; ?></td>
+                                <td class="small">
                                     <?= $data['nama_kategori']; ?>
                                 </td>
                                 <td>

@@ -29,9 +29,9 @@
                         while ($dataU = mysqli_fetch_assoc($sqlU)) { 
                         ?>
                             <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $dataU['nip']; ?></td>
-                                <td class="text-capitalize"><?= $dataU['nama']; ?></td>
+                                <td class="small"><?= $no++; ?></td>
+                                <td class="small"><?= $dataU['nip']; ?></td>
+                                <td class="text-capitalize small"><?= $dataU['nama']; ?></td>
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm text-white me-1" 
                                             data-bs-toggle="modal" 

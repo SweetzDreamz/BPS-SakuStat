@@ -17,9 +17,11 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
+    <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>"> 
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
 
 </head>
 
@@ -44,7 +46,7 @@
                 </a>
             </li>
 
-            <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Master Data</li>
+            <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Data Utama</li>
 
             <li class="<?php echo ($page == 'data-kategori') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kategori">
@@ -70,6 +72,8 @@
                 </a>
             </li>
             
+            <li class="px-3 py-3 text-white-50 text-uppercase small fw-bold">Lainnya</li>
+
             <li class="<?php echo ($page == 'data-pengguna') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-pengguna">
                     <i class="fa-solid fa-users"></i> Data Pengguna
@@ -81,12 +85,6 @@
                 </a>
             </li>
         </ul>
-
-        <div class="logout-box mt-auto">
-            <a href="logout.php" class="btn btn-danger w-100 shadow-sm btn-sm btn-logout">
-                <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
-            </a>
-        </div>
     </nav>
 
     <div id="content">

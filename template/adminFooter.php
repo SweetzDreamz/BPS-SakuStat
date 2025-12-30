@@ -1,7 +1,7 @@
 <footer class="mt-auto py-3 bg-light text-center border-top">
             <div class="container-fluid">
                 <small class="text-muted">
-                    Copyright &copy; Created by <a href="https://github.com/SweetzDreamz?tab=repositories" class="text-decoration-none fw-bold">Me</a>
+                    BPS Kota Bogor | Created by <a href="https://github.com/SweetzDreamz?tab=repositories" class="text-decoration-none fw-bold">Me</a>
                 </small>
             </div>
         </footer>
@@ -18,7 +18,7 @@
 <script>
     $(document).ready(function () {
 
-        $('#example').DataTable();
+        $('#example').DataTable({"bInfo" : false});
 
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
