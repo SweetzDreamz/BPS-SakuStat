@@ -35,14 +35,16 @@ if (!$data) {
 }
 ?>
 
-<div class="container-fluid px-5 py-4 mb-5">
-    
-    <div class="bg-primary text-white p-4 rounded-3 shadow-sm mb-4">
-        <h2 class="fw-bold mb-0 text-uppercase"><?= $data['nama_kegiatan']; ?></h2>
-        <p class="mb-0 opacity-75 mt-1"><i class="fa-solid fa-tag me-2"></i><?= $data['nama_kategori']; ?></p>
+<div class="bg-primary text-white w-100 py-3"> 
+    <div class="container-fluid px-5 py-2"> 
+        <h2 class="fw-bold mb-0 text-uppercase display-6"><?= $data['nama_kegiatan']; ?></h2>
+        <p class="mb-0 opacity-75 mt-2 fs-6"><i class="fa-solid fa-tag me-2"></i><?= $data['nama_kategori']; ?></p>
     </div>
+</div>
 
-    <div class="row g-4">
+<div class="container-fluid px-5 py-4 mb-5">
+
+    <div class="row g-3">
         
         <div class="col-md-3">
             <div class="card shadow-sm border-0">

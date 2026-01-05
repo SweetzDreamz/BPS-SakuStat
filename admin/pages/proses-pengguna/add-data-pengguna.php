@@ -21,7 +21,6 @@ if (isset($_POST['add_user'])) {
 
         if ($result) {
             echo "<script>
-                    alert('Berhasil! Data pengguna baru telah ditambahkan.');
                     window.location.href = '../../index.php?page=data-pengguna';
                   </script>";
         } else {

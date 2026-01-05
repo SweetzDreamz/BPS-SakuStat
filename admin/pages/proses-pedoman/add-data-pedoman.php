@@ -1,17 +1,14 @@
 <?php
-// Pastikan path koneksi ini benar
 include "../../../config/koneksi.php";
 
 if (isset($_POST['add_pedoman'])) {
     // 1. AMBIL DATA DARI FORM HTML
-    // (Pastikan di form HTML atribut name="judul", name="id_kategori", name="link_drive")
     $judul       = mysqli_real_escape_string($koneksi, $_POST['judul']);       
     $id_kategori = mysqli_real_escape_string($koneksi, $_POST['id_kategori']); 
     $link        = mysqli_real_escape_string($koneksi, $_POST['link_drive']);  
 
-    // ==========================================
+
     // 2. LOGIKA ID OTOMATIS (P001, P002, dst)
-    // ==========================================
     $query_id = mysqli_query($koneksi, "SELECT max(id_pedoman) as max_id FROM tb_pedoman");
     $data_id  = mysqli_fetch_array($query_id);
     $last_id  = $data_id['max_id'];
@@ -27,9 +24,8 @@ if (isset($_POST['add_pedoman'])) {
     // Format ulang ke P00X
     $id_baru = "P" . sprintf("%03s", $urutan);
 
-    // ==========================================
+
     // 3. LOGIKA UPLOAD GAMBAR
-    // ==========================================
     $nama_file_db = "NULL"; // Default jika tidak ada gambar
 
     if(isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK) {
@@ -65,17 +61,15 @@ if (isset($_POST['add_pedoman'])) {
         }
     }
 
-    // ==========================================
+
     // 4. INSERT KE DATABASE
-    // ==========================================
-    // Kolom database Anda: id_pedoman, nama_pedoman, id_kategori, link_pedoman, cover_pedoman
     $query = "INSERT INTO tb_pedoman (id_pedoman, nama_pedoman, id_kategori, link_pedoman, cover_pedoman) 
               VALUES ('$id_baru', '$judul', '$id_kategori', '$link', $nama_file_db)";
     
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Berhasil! Data ditambahkan dengan ID: $id_baru'); window.location.href='../../index.php?page=data-pedoman';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-pedoman';</script>";
     } else {
         echo "<script>alert('Gagal Database: " . mysqli_error($koneksi) . "'); window.location.href='../../index.php?page=data-pedoman';</script>";
     }

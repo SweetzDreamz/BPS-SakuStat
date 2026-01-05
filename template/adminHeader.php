@@ -54,6 +54,12 @@
                 </a>
             </li>
 
+            <li class="<?php echo ($page == 'data-pedoman') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-pedoman">
+                    <i class="fa-solid fa-book"></i> Data Pedoman
+                </a>
+            </li>
+
             <li class="<?php echo ($page == 'data-kegiatan') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kegiatan">
                     <i class="fa-solid fa-list-check"></i> Data Kegiatan
@@ -63,12 +69,6 @@
             <li class="<?php echo ($page == 'data-kasusbatas') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kasusbatas">
                     <i class="fa-solid fa-scale-balanced"></i> Data Kasus Batas
-                </a>
-            </li>
-
-            <li class="<?php echo ($page == 'data-pedoman') ? 'active' : ''; ?>">
-                <a href="index.php?page=data-pedoman">
-                    <i class="fa-solid fa-book"></i> Data Pedoman
                 </a>
             </li>
             

@@ -26,7 +26,6 @@ if (isset($_POST['edit_user'])) {
 
     if ($result) {
         echo "<script>
-                alert('Data pengguna berhasil diperbarui!');
                 window.location.href = '../../index.php?page=data-pengguna';
               </script>";
     } else {

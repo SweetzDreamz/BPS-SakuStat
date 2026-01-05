@@ -59,53 +59,53 @@
                                        title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
-                                </td>
-                            </tr>
 
-                            <div class="modal fade" id="edit-kasus<?= $data['id_kasusbatas']; ?>" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Kasus Batas</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal fade text-start" id="edit-kasus<?= $data['id_kasusbatas']; ?>" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Kasus Batas</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="pages/proses-kasusbatas/edit-data-kasusbatas.php" method="POST">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_kasusbatas" value="<?= $data['id_kasusbatas']; ?>">
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Kegiatan Terkait</label>
+                                                            <select name="id_kegiatan" class="form-select" required>
+                                                                <option value="">-- Pilih Kegiatan --</option>
+                                                                <?php
+                                                                // Reset pointer query agar dropdown selalu terisi di setiap modal (looping)
+                                                                $sqlK_edit = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan ORDER BY nama_kegiatan ASC");
+                                                                while($keg_edit = mysqli_fetch_assoc($sqlK_edit)){
+                                                                    $selected = ($keg_edit['id_kegiatan'] == $data['id_kegiatan']) ? "selected" : "";
+                                                                    echo "<option value='".$keg_edit['id_kegiatan']."' $selected>".$keg_edit['nama_kegiatan']."</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Situasi Lapangan</label>
+                                                            <textarea name="situasi" class="form-control" rows="4" required><?= $data['situasi_lapangan']; ?></textarea>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Jawaban Kasus Batas</label>
+                                                            <textarea name="jawaban" class="form-control" rows="4" required><?= $data['jawaban_kasusbatas']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" name="edit_kasusbatas" class="btn btn-primary btn-simpan">Simpan Perubahan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <form action="pages/proses-kasusbatas/edit-data-kasusbatas.php" method="POST">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id_kasusbatas" value="<?= $data['id_kasusbatas']; ?>">
-                                                
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Kegiatan Terkait</label>
-                                                    <select name="id_kegiatan" class="form-select" required>
-                                                        <option value="">-- Pilih Kegiatan --</option>
-                                                        <?php
-                                                        // Ambil data Kegiatan untuk Dropdown Edit
-                                                        $sqlK_edit = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan ORDER BY nama_kegiatan ASC");
-                                                        while($keg_edit = mysqli_fetch_assoc($sqlK_edit)){
-                                                            $selected = ($keg_edit['id_kegiatan'] == $data['id_kegiatan']) ? "selected" : "";
-                                                            echo "<option value='".$keg_edit['id_kegiatan']."' $selected>".$keg_edit['nama_kegiatan']."</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Situasi Lapangan</label>
-                                                    <textarea name="situasi" class="form-control" rows="4" required><?= $data['situasi_lapangan']; ?></textarea>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Jawaban Kasus Batas</label>
-                                                    <textarea name="jawaban" class="form-control" rows="4" required><?= $data['jawaban_kasusbatas']; ?></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" name="edit_kasusbatas" class="btn btn-primary">Simpan Perubahan</button>
-                                            </div>
-                                        </form>
                                     </div>
-                                </div>
-                            </div>
+                                    </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -131,7 +131,6 @@
                         <select name="id_kegiatan" class="form-select" required>
                             <option value="" selected disabled>-- Pilih Kegiatan --</option>
                             <?php
-                            // Ambil data Kegiatan untuk Dropdown Tambah
                             $sqlK_add = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan ORDER BY nama_kegiatan ASC");
                             while($keg_add = mysqli_fetch_assoc($sqlK_add)){
                                 echo "<option value='".$keg_add['id_kegiatan']."'>".$keg_add['nama_kegiatan']."</option>";
@@ -154,7 +153,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="add_kasusbatas" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" name="add_kasusbatas" class="btn btn-primary btn-simpan">Simpan Data</button>
                 </div>
             </form>
         </div>

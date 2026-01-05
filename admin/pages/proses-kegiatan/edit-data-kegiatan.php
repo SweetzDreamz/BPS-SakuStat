@@ -24,7 +24,7 @@ if (isset($_POST['edit_kegiatan'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Data kegiatan berhasil diperbarui!'); window.location.href='../../index.php?page=data-kegiatan';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-kegiatan';</script>";
     } else {
         echo "<script>alert('Gagal update database: " . mysqli_error($koneksi) . "'); window.location.href='../../index.php?page=data-kegiatan';</script>";
     }

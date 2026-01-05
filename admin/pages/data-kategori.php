@@ -31,6 +31,7 @@
                                 <td><?= $no++; ?></td>
                                 <td><?= $dataK['id_kategori']; ?></td>
                                 <td><?= $dataK['nama_kategori']; ?></td>
+                                
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm text-white me-1" 
                                             data-bs-toggle="modal" 
@@ -44,37 +45,37 @@
                                        title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
-                                </td>
-                            </tr>
 
-                            <div class="modal fade" id="edit-kategori<?= $dataK['id_kategori']; ?>" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Kategori</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal fade text-start" id="edit-kategori<?= $dataK['id_kategori']; ?>" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Kategori</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="pages/proses-kategori/edit-data-kategori.php" method="POST">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_lama" value="<?= $dataK['id_kategori']; ?>">
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">ID Kategori</label>
+                                                            <input type="text" name="id_kategori" class="form-control" value="<?= $dataK['id_kategori']; ?>" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Nama Kategori</label>
+                                                            <input type="text" name="nama_kategori" class="form-control" value="<?= $dataK['nama_kategori']; ?>" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" name="edit_kategori" class="btn btn-primary btn-simpan">Simpan Perubahan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <form action="pages/proses-kategori/edit-data-kategori.php" method="POST">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id_lama" value="<?= $dataK['id_kategori']; ?>">
-                                                
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">ID Kategori</label>
-                                                    <input type="text" name="id_kategori" class="form-control" value="<?= $dataK['id_kategori']; ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Nama Kategori</label>
-                                                    <input type="text" name="nama_kategori" class="form-control" value="<?= $dataK['nama_kategori']; ?>" required>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" name="edit_kategori" class="btn btn-primary">Simpan Perubahan</button>
-                                            </div>
-                                        </form>
                                     </div>
-                                </div>
-                            </div>
+                                    </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -94,10 +95,7 @@
             </div>
             <form action="pages/proses-kategori/add-data-kategori.php" method="POST">
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">ID Kategori</label>
-                        <input type="text" name="id_kategori" class="form-control" placeholder="Contoh: K001" required>
-                    </div>
+                    
                     <div class="mb-3">
                         <label class="form-label fw-bold">Nama Kategori</label>
                         <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan Nama Kategori" required>
@@ -105,7 +103,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="add_kategori" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" name="add_kategori" class="btn btn-primary btn-simpan">Simpan Data</button>
                 </div>
             </form>
         </div>

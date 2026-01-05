@@ -30,7 +30,7 @@ if (isset($_POST['add_kegiatan'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Berhasil! Kegiatan ditambahkan dengan ID: $id_baru'); window.location.href='../../index.php?page=data-kegiatan';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-kegiatan';</script>";
     } else {
         echo "<script>alert('Gagal Database: " . mysqli_error($koneksi) . "'); window.location.href='../../index.php?page=data-kegiatan';</script>";
     }

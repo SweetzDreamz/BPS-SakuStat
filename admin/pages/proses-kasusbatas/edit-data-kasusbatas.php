@@ -16,7 +16,7 @@ if (isset($_POST['edit_kasusbatas'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Data kasus batas berhasil diperbarui!'); window.location.href='../../index.php?page=data-kasusbatas';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-kasusbatas';</script>";
     } else {
         echo "<script>alert('Gagal update database: " . mysqli_error($koneksi) . "'); window.location.href='../../index.php?page=data-kasusbatas';</script>";
     }

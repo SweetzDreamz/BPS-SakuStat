@@ -3,7 +3,7 @@
 :root {
   --font-primary: 'IBM Plex Sans', sans-serif;
   --primary-color: #0d6efd;
-  --primary-dark: #0a58ca;
+  --primary-dark: #052c65;
   --accent-color: #f8f9fa;
   --text-dark: #333333;
   --text-muted: #6c757d;
@@ -32,7 +32,7 @@ h6,
 
 /* --- 1. NAVBAR STYLING --- */
 .navbar {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)) !important;
+  background: var(--primary-dark) !important;
   padding-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #ffffff;
@@ -136,4 +136,30 @@ footer strong {
 .hover-text-white:hover {
   color: #fff !important;
   transition: color 0.3s ease;
+}
+
+.breadcrumb-item {
+  flex-shrink: 0;
+}
+.breadcrumb-item.active {
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive Home Container */
+@media (max-width: 576px) {
+  .home-container,
+  .footer-container,
+  .navbar-container,
+  .hasil-pencarian-container,
+  .breadcrumb-container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .breadcrumb-item.active {
+    max-width: 150px;
+  }
 }

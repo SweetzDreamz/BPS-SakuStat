@@ -43,21 +43,18 @@
                         ?>
                             <tr>
                                 <td class="small"><?= $no++; ?></td>
-                                <td class="small">
-                                    <?= $data['id_pedoman']; ?>
-                                </td>
+                                <td class="small"><?= $data['id_pedoman']; ?></td>
                                 <td class="text-center">
                                     <img src="<?= $imgSrc; ?>" alt="Cover" style="width: 50px; height: 70px; object-fit: cover; border-radius: 5px; border: 1px solid #ddd;">
                                 </td>
                                 <td class="small"><?= $data['nama_pedoman']; ?></td>
-                                <td class="small">
-                                    <?= $data['nama_kategori']; ?>
-                                </td>
+                                <td class="small"><?= $data['nama_kategori']; ?></td>
                                 <td>
                                     <a href="<?= $data['link_pedoman']; ?>" target="_blank" class="btn btn-sm btn-outline-primary">
                                         <i class="fa-brands fa-google-drive"></i> Buka
                                     </a>
                                 </td>
+                                
                                 <td class="text-center">
                                     <button class="btn btn-warning btn-sm text-white me-1" 
                                             data-bs-toggle="modal" 
@@ -71,60 +68,61 @@
                                        title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
-                                </td>
-                            </tr>
 
-                            <div class="modal fade" id="edit-pedoman<?= $data['id_pedoman']; ?>" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Pedoman</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal fade text-start" id="edit-pedoman<?= $data['id_pedoman']; ?>" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                    <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Pedoman</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="pages/proses-pedoman/edit-data-pedoman.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id_pedoman" value="<?= $data['id_pedoman']; ?>">
+                                                        <input type="hidden" name="cover_lama" value="<?= $data['cover_pedoman']; ?>">
+                                                        
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Judul Pedoman</label>
+                                                            <input type="text" name="judul" class="form-control" value="<?= $data['nama_pedoman']; ?>" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Kategori</label>
+                                                            <select name="id_kategori" class="form-select" required>
+                                                                <option value="">-- Pilih Kategori --</option>
+                                                                <?php
+                                                                // Reset Query Kategori untuk setiap modal edit
+                                                                $sqlK_edit = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori ASC");
+                                                                while($kat_edit = mysqli_fetch_assoc($sqlK_edit)){
+                                                                    $selected = ($kat_edit['id_kategori'] == $data['id_kategori']) ? "selected" : "";
+                                                                    echo "<option value='".$kat_edit['id_kategori']."' $selected>".$kat_edit['id_kategori']." - ".$kat_edit['nama_kategori']."</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Link Google Drive</label>
+                                                            <input type="text" name="link_drive" class="form-control" value="<?= $data['link_pedoman']; ?>" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label class="form-label fw-bold">Ganti Cover <small class="text-muted fw-normal">(Biarkan kosong jika tidak diganti)</small></label>
+                                                            <br>
+                                                            <img src="<?= $imgSrc; ?>" width="80" class="mb-2 border rounded">
+                                                            <input type="file" name="cover" class="form-control" accept=".jpg, .jpeg, .png">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" name="edit_pedoman" class="btn btn-primary btn-simpan">Simpan Perubahan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <form action="pages/proses-pedoman/edit-data-pedoman.php" method="POST" enctype="multipart/form-data">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="id_pedoman" value="<?= $data['id_pedoman']; ?>">
-                                                <input type="hidden" name="cover_lama" value="<?= $data['cover_pedoman']; ?>">
-                                                
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Judul Pedoman</label>
-                                                    <input type="text" name="judul" class="form-control" value="<?= $data['nama_pedoman']; ?>" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Kategori</label>
-                                                    <select name="id_kategori" class="form-select" required>
-                                                        <option value="">-- Pilih Kategori --</option>
-                                                        <?php
-                                                        $sqlK_edit = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori ASC");
-                                                        while($kat_edit = mysqli_fetch_assoc($sqlK_edit)){
-                                                            $selected = ($kat_edit['id_kategori'] == $data['id_kategori']) ? "selected" : "";
-                                                            echo "<option value='".$kat_edit['id_kategori']."' $selected>".$kat_edit['id_kategori']." - ".$kat_edit['nama_kategori']."</option>";
-                                                        }
-                                                        ?>
-                                                    </select>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Link Google Drive</label>
-                                                    <input type="text" name="link_drive" class="form-control" value="<?= $data['link_pedoman']; ?>" required>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Ganti Cover <small class="text-muted fw-normal">(Biarkan kosong jika tidak diganti)</small></label>
-                                                    <br>
-                                                    <img src="<?= $imgSrc; ?>" width="80" class="mb-2 border rounded">
-                                                    <input type="file" name="cover" class="form-control" accept=".jpg, .jpeg, .png">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" name="edit_pedoman" class="btn btn-primary">Simpan Perubahan</button>
-                                            </div>
-                                        </form>
                                     </div>
-                                </div>
-                            </div>
+                                    </td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -174,7 +172,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="add_pedoman" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" name="add_pedoman" class="btn btn-primary btn-simpan">Simpan Data</button>
                 </div>
             </form>
         </div>

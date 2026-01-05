@@ -15,7 +15,6 @@ if (isset($_POST['edit_kategori'])) {
 
     if ($result) {
         echo "<script>
-                alert('Data kategori berhasil diperbarui!');
                 window.location.href = '../../index.php?page=data-kategori';
               </script>";
     } else {

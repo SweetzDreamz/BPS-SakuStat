@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($koneksi, $query_delete);
 
     if ($result) {
-        echo "<script>alert('Data dan file berhasil dihapus!'); window.location.href='../../index.php?page=data-pedoman';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-pedoman';</script>";
     } else {
         echo "<script>alert('Gagal menghapus data database!'); window.location.href='../../index.php?page=data-pedoman';</script>";
     }

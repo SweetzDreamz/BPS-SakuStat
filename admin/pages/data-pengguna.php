@@ -45,41 +45,41 @@
                                         title="Hapus">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
-                                </td>
-                            </tr>
 
-                            <div class="modal fade" id="edit-user<?= $dataU['nip']; ?>" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
-                                            <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Pengguna</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div class="modal fade text-start" id="edit-user<?= $dataU['nip']; ?>" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary text-white">
+                                                <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>Edit Pengguna</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="pages/proses-pengguna/edit-data-pengguna.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="nip_lama" value="<?= $dataU['nip']; ?>">
+                                                    
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">NIP</label>
+                                                        <input type="text" name="nip" class="form-control" value="<?= $dataU['nip']; ?>" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">Nama Lengkap</label>
+                                                        <input type="text" name="nama" class="form-control" value="<?= $dataU['nama']; ?>" required>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">Password Baru <small class="text-muted fw-normal">(Biarkan jika tidak ingin mengubah)</small></label>
+                                                        <input type="password" name="password" class="form-control" value="<?= $dataU['password']; ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" name="edit_user" class="btn btn-primary btn-simpan">Simpan Perubahan</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <form action="pages/proses-pengguna/edit-data-pengguna.php" method="POST">
-                                            <div class="modal-body">
-                                                <input type="hidden" name="nip_lama" value="<?= $dataU['nip']; ?>">
-                                                
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">NIP</label>
-                                                    <input type="text" name="nip" class="form-control" value="<?= $dataU['nip']; ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Nama Lengkap</label>
-                                                    <input type="text" name="nama" class="form-control" value="<?= $dataU['nama']; ?>" required>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold">Password Baru <small class="text-muted fw-normal">(Biarkan jika tidak ingin mengubah)</small></label>
-                                                    <input type="password" name="password" class="form-control" value="<?= $dataU['password']; ?>">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" name="edit_user" class="btn btn-primary">Simpan Perubahan</button>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
-                            </div>
+                                </td>
+                            </tr>
                             <?php } ?>
                     </tbody>
                 </table>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" name="add_user" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" name="add_user" class="btn btn-primary btn-simpan">Simpan Data</button>
                 </div>
             </form>
         </div>

@@ -55,40 +55,70 @@
                             </tr>
 
                             <div class="modal fade" id="detail-feedback<?= $data['id_feedback']; ?>" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                     <div class="modal-content">
-                                        <div class="modal-header bg-info text-white">
-                                            <h5 class="modal-title"><i class="fa-solid fa-circle-info me-2"></i>Detail Masukan</h5>
+                                        
+                                        <div class="modal-header border-bottom-0 pb-0">
+                                            <h5 class="modal-title fw-bold text-primary">
+                                                <i class="fa-regular fa-envelope-open me-2"></i> Detail Pesan Masukan
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label class="form-label fw-bold">Kegiatan Terkait</label>
-                                                <input type="text" class="form-control" value="<?= $data['nama_kegiatan']; ?>" readonly>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 mb-3">
-                                                    <label class="form-label fw-bold">Nama Pengirim</label>
-                                                    <input type="text" class="form-control" value="<?= $data['nama']; ?>" readonly>
+
+                                        <div class="modal-body pt-3 px-4">
+                                            
+                                            <div class="bg-light p-4 rounded mb-4 shadow-sm border">
+                                                
+                                                <div class="row mb-2">
+                                                    <div class="col-sm-3 col-4 text-muted small text-uppercase fw-bold pt-1">
+                                                        Dari
+                                                    </div>
+                                                    <div class="col-sm-9 col-8 text-dark border-bottom pb-1">
+                                                        <?= htmlspecialchars($data['nama']); ?>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label class="form-label fw-bold">Subjek</label>
-                                                    <input type="text" class="form-control" value="<?= $data['subjek']; ?>" readonly>
+                                                
+                                                <div class="row mb-2">
+                                                    <div class="col-sm-3 col-4 text-muted small text-uppercase fw-bold pt-1">
+                                                        Untuk Kegiatan
+                                                    </div>
+                                                    <div class="col-sm-9 col-8 border-bottom pb-1">
+                                                        <?= $data['nama_kegiatan']; ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-4 text-muted small text-uppercase fw-bold pt-1">
+                                                        Subjek
+                                                    </div>
+                                                    <div class="col-sm-9 col-8 border-bottom pb-1">
+                                                        <?= htmlspecialchars($data['subjek']); ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="bg-light p-4 rounded mb-4 shadow-sm border">
+                                                <h6 class="fw-bold text-secondary mb-3 border-bottom pb-2">
+                                                    <i class="fa-solid fa-align-left me-2"></i>Feedback
+                                                </h6>
+                                                
+                                                <div>
+                                                    <p><?= htmlspecialchars($data['deskripsi_feedback']); ?></p>
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label fw-bold">Isi Deskripsi / Masukan Lengkap</label>
-                                                <textarea class="form-control" rows="6" readonly><?= $data['deskripsi_feedback']; ?></textarea>
-                                            </div>
+
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+
+                                        <div class="modal-footer border-top-0 pt-0 pb-4 pe-4">
+                                            <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Tutup</button>
                                             
                                             <a href="pages/proses-feedback/del-data-feedback.php?id=<?= $data['id_feedback']; ?>" 
-                                               class="btn btn-danger btn-hapus">
-                                                <i class="fa-solid fa-trash me-1"></i> Hapus Data
+                                            class="btn btn-danger btn-hapus px-4">
+                                                <i class="fa-solid fa-trash me-2"></i> Hapus Pesan
                                             </a>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

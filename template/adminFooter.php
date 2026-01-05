@@ -18,19 +18,23 @@
 <script>
     $(document).ready(function () {
 
+        // Setup DataTables
         $('#example').DataTable({"bInfo" : false});
 
+        // Sidebar Toggle
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
         });
 
+
+        // 1. SCRIPT HAPUS (DELETE)
         $(document).on('click', '.btn-hapus', function(e) {
             e.preventDefault();
             const href = $(this).attr('href');
 
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: "Data pengguna ini akan dihapus permanen!",
+                text: "Data ini akan dihapus permanen!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -39,11 +43,74 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.location.href = href;
+                    // Tampilkan Pesan SUKSES sebelum redirect
+                    Swal.fire({
+                        title: 'Dihapus!',
+                        text: 'Data sedang dihapus...',
+                        icon: 'success',
+                        timer: 1500, // Waktu tunggu 1.5 detik
+                        showConfirmButton: false
+                    }).then(() => {
+                        // Redirect ke link hapus setelah timer selesai
+                        document.location.href = href;
+                    });
                 }
             });
         });
 
+
+        // 2. SCRIPT SIMPAN / EDIT (VERSI PERBAIKAN 'closest')
+        $(document).on('click', '.btn-simpan', function(e) {
+            e.preventDefault();
+            
+            var tombol = $(this);
+            var form = tombol.closest('form'); // Menggunakan closest agar lebih akurat
+            
+            var btnName = tombol.attr('name'); 
+            var btnVal  = tombol.val();
+
+            // Cek Validasi HTML (Required fields)
+            if (!form[0].checkValidity()) {
+                form[0].reportValidity(); // Munculkan pesan error browser jika kosong
+                return;
+            }
+
+            // Tampilkan Konfirmasi Dulu
+            Swal.fire({
+                title: 'Konfirmasi Simpan',
+                text: "Pastikan data yang Anda input sudah benar.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Simpan!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Tampilkan Pesan SUKSES sebelum submit
+                    Swal.fire({
+                        title: 'Berhasil!',
+                        text: 'Data sedang disimpan...',
+                        icon: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        // Trik agar PHP tetap bisa membaca tombol submit yg ditekan
+                        if(btnName) {
+                            $('<input>').attr({
+                                type: 'hidden',
+                                name: btnName,
+                                value: btnVal
+                            }).appendTo(form);
+                        }
+
+                        form.submit(); // Kirim form
+                    });
+                }
+            });
+        });
+
+        // 3. SCRIPT LOGOUT
         $('.btn-logout').on('click', function(e) {
             e.preventDefault();
             const href = $(this).attr('href');

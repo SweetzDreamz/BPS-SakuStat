@@ -26,14 +26,13 @@ if($page == 'hasil-pencarian'){
     $parent_page_link  = "index.php?p=hasil-pencarian"; 
     
     // 2. SET CURRENT CRUMB (ACTIVE)
-    // Ambil nama kegiatan agar breadcrumb lebih informatif (Opsional, jika ingin statis cukup "Detail Kegiatan")
+    // Ambil nama kegiatan agar breadcrumb lebih informatif
     if(isset($_GET['id'])){
         $id_keg_bc = mysqli_real_escape_string($koneksi, $_GET['id']);
         $q_keg_bc  = mysqli_query($koneksi, "SELECT nama_kegiatan FROM tb_kegiatan WHERE id_kegiatan='$id_keg_bc'");
         $d_keg_bc  = mysqli_fetch_assoc($q_keg_bc);
         
-        // Memotong judul jika terlalu panjang agar breadcrumb rapi
-        $judul_pendek = isset($d_keg_bc['nama_kegiatan']) ? substr($d_keg_bc['nama_kegiatan'], 0, 100) . "" : "Detail Kegiatan";
+        $judul_pendek = isset($d_keg_bc['nama_kegiatan']) ? $d_keg_bc['nama_kegiatan'] : "Detail Kegiatan";
         $current_page_label = $judul_pendek;
     } else {
         $current_page_label = "Detail Kegiatan";
@@ -45,16 +44,16 @@ if($page == 'hasil-pencarian'){
 ?>
 
 <?php if($page != 'home' && $page != ''){ ?>
+
 <div class="bg-info bg-opacity-10 border-bottom border-primary py-1">
-    <div class="container-fluid px-5">
+    <div class="container-fluid px-3 px-md-5 breadcrumb-container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
+            <ol class="breadcrumb mb-0 flex-nowrap align-items-center">
                 
                 <li class="breadcrumb-item">
                     <span class="small">
                         <a href="index.php" class="text-decoration-none text-primary">
-                            Beranda
-                        </a>
+                            <i class="fa-solid fa-house d-md-none"></i> <span class="d-none d-md-inline">Beranda</span> </a>
                     </span>
                 </li>
 
@@ -62,14 +61,16 @@ if($page == 'hasil-pencarian'){
                 <li class="breadcrumb-item">
                     <span class="small">
                         <a href="<?= $parent_page_link; ?>" class="text-decoration-none text-primary">
-                            <?= $parent_page_label; ?>
+                            <span class="d-md-none">Cari</span> 
+                            <span class="d-none d-md-inline"><?= $parent_page_label; ?></span>
                         </a>
                     </span>
                 </li>
                 <?php } ?>
                 
                 <li class="breadcrumb-item active text-muted" aria-current="page">
-                    <span class="small"><?= $current_page_label; ?></span>
+                    <span class="small" title="<?= $current_page_label; ?>"> <?= $current_page_label; ?>
+                    </span>
                 </li>
 
             </ol>

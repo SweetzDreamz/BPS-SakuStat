@@ -73,7 +73,7 @@
                     <i class="fa-solid fa-scale-balanced fa-3x opacity-50"></i>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link text-decoration-none" href="index.php?p=data-kasusbatas">Lihat Detail</a>
+                    <a class="small text-white stretched-link text-decoration-none" href="index.php?page=data-kasusbatas">Lihat Detail</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <i class="fa-solid fa-book-bookmark fa-3x opacity-50"></i>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link text-decoration-none" href="index.php?p=data-pedoman">Lihat Detail</a>
+                    <a class="small text-white stretched-link text-decoration-none" href="index.php?page=data-pedoman">Lihat Detail</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     <i class="fa-solid fa-comments fa-3x opacity-50"></i>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link text-decoration-none" href="index.php?p=data-feedback">Lihat Detail</a>
+                    <a class="small text-white stretched-link text-decoration-none" href="index.php?page=feedback">Lihat Detail</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>

@@ -10,7 +10,6 @@ if (!empty($id)) {
     if ($query) {
 
         echo "<script>
-                alert('Data berhasil dihapus!');
                 window.location.href = '../../index.php?page=data-kategori';
               </script>";
     } else {

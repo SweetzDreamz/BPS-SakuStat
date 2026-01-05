@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" >
-  <div class="container-fluid px-5">
+  <div class="container-fluid px-5 navbar-container">
     <a class="navbar-brand fw-bold" href="index.php">
         <img src="assets/img/bps.png" alt="contoh" width="30" height="30">
-        <i class="fa-solid fa-chart-simple me-2"></i>BPS KOTA BOGOR
+        <i class="fa-solid fa-chart-simple me-2"></i><i>BPS KOTA BOGOR</i>
     </a>
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
         
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php?p=home">Beranda</a>
-        </li>
+        </li>  
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,18 +39,6 @@
         <li class="nav-item">
           <a class="nav-link" href="index.php?p=pedoman">Pedoman</a>
         </li>
-
-        <li class="nav-item ms-lg-3">
-            <a class="btn btn-light rounded-circle text-primary shadow-sm d-flex align-items-center justify-content-center" 
-               href="admin/login.php" 
-               style="width: 35px; height: 35px;" 
-               data-bs-toggle="tooltip" 
-               data-bs-placement="bottom" 
-               title="Login Admin">
-                <i class="fa-solid fa-user"></i>
-            </a>
-        </li>
-
       </ul>
     </div>
   </div>

@@ -30,7 +30,7 @@ h6,
 
 body.login-page {
   background-color: var(--primary-color) !important;
-  background: linear-gradient(to top, rgba(5, 30, 80, 0.95), rgba(13, 110, 253, 0.75)), url('../img/bg2.png');
+  background: linear-gradient(to top, rgba(5, 30, 80, 0.95), rgba(13, 110, 253, 0.75)), url('../img/bg1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

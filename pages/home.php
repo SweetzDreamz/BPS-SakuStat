@@ -30,7 +30,7 @@ $dt_kasus       = mysqli_fetch_assoc($q_kasus);
 $total_kasus    = $dt_kasus['total'];
 ?>
 
-<div class="container-fluid px-5 py-4">  
+<div class="container-fluid px-5 py-4 home-container">  
     
     <div class="row g-4 mb-5"> 
         
@@ -82,7 +82,7 @@ $total_kasus    = $dt_kasus['total'];
                     <h2 class="fw-bold text-primary mb-0">Apa itu SAKU STAT?</h2>
                 </div>
                 
-                <p class="lead text-dark mb-0 fs-5" style="line-height: 1.8; text-align: justify;">
+                <p class="lead text-dark mb-0 fs-6" style="line-height: 1.8; text-align: justify;">
                     <strong>SakuStat</strong> adalah media referensi digital yang berisi kumpulan kasus batas yang sering ditemui oleh petugas statistik di lapangan. Aplikasi ini dibuat agar petugas dapat mengambil keputusan cepat dan tepat saat menghadapi kasus non-standar, memahami definisi operasional secara konsisten, mengurangi kesalahan pencatatan, dan meningkatkan kualitas data lapangan.
                 </p>
             </div>

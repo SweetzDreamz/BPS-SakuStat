@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Data berhasil dihapus!'); window.location.href='../../index.php?page=data-kasusbatas';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-kasusbatas';</script>";
     } else {
         echo "<script>alert('Gagal menghapus data!'); window.location.href='../../index.php?page=data-kasusbatas';</script>";
     }

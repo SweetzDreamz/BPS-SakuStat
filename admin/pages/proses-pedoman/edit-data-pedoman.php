@@ -71,9 +71,8 @@ if (isset($_POST['edit_pedoman'])) {
     $result = mysqli_query($koneksi, $query);
 
     if ($result) {
-        echo "<script>alert('Data berhasil diperbarui!'); window.location.href='../../index.php?page=data-pedoman';</script>";
+        echo "<script>window.location.href='../../index.php?page=data-pedoman';</script>";
     } else {
         echo "<script>alert('Gagal update database: " . mysqli_error($koneksi) . "'); window.location.href='../../index.php?page=data-pedoman';</script>";
     }
 }
-?>
