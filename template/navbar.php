@@ -10,7 +10,7 @@
     </button>
     
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+      <ul class="navbar-nav ms-auto gap-3">
         
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php?p=home">Beranda</a>
@@ -37,7 +37,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?p=pedoman">Pedoman</a>
+          <a class="nav-link" href="index.php?p=feedback">Feedback</a>
         </li>
       </ul>
     </div>

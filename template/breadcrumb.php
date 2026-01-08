@@ -40,6 +40,8 @@ if($page == 'hasil-pencarian'){
 
 } elseif ($page == 'pedoman') {
     $current_page_label = "Buku Pedoman";
+} elseif ($page == 'feedback') {
+    $current_page_label = "Feedback";
 }
 ?>
 

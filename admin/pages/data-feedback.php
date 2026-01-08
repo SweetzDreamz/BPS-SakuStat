@@ -12,20 +12,18 @@
                     <thead class="table-secondary">
                         <tr>
                             <th width="5%">No</th>
-                            <th width="20%">Nama Kegiatan</th>
-                            <th width="10%">Nama Pengirim</th>
-                            <th width="20%">Subjek</th>
-                            <th width="35%">Deskripsi</th>
+                            <th width="15%">Nama Pengirim</th>
+                            <th width="25%">Subjek</th>
+                            <th width="45%">Deskripsi</th>
                             <th class="text-center" width="10%">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        $query = "SELECT f.*, k.nama_kegiatan 
-                                  FROM tb_feedback f 
-                                  LEFT JOIN tb_kegiatan k ON f.id_kegiatan = k.id_kegiatan 
-                                  ORDER BY f.id_feedback DESC";
+                        $query = "SELECT * 
+                                  FROM tb_feedback 
+                                  ORDER BY id_feedback DESC";
                         
                         $sql = mysqli_query($koneksi, $query);
 
@@ -33,7 +31,6 @@
                         ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><span class="small"><?= $data['nama_kegiatan']; ?></span></td>
                                 <td><span class="small"><?= htmlspecialchars($data['nama']); ?></span></td>
                                 <td><span class="small"><?= substr(htmlspecialchars($data['subjek']), 0, 50); ?></span></td>
                                 <td><span class="small"><?= substr(htmlspecialchars($data['deskripsi_feedback']), 0, 100); ?></span></td>
@@ -78,15 +75,6 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="row mb-2">
-                                                    <div class="col-sm-3 col-4 text-muted small text-uppercase fw-bold pt-1">
-                                                        Untuk Kegiatan
-                                                    </div>
-                                                    <div class="col-sm-9 col-8 border-bottom pb-1">
-                                                        <?= $data['nama_kegiatan']; ?>
-                                                    </div>
-                                                </div>
-
                                                 <div class="row">
                                                     <div class="col-sm-3 col-4 text-muted small text-uppercase fw-bold pt-1">
                                                         Subjek

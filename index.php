@@ -25,6 +25,9 @@ switch ($page) {
     case 'pedoman': 
         include "pages/pedoman.php";
         break;
+    case 'feedback':
+        include "pages/feedback.php";
+        break;
     default:
         echo "<div class='container py-5 text-center'>
                 <h3>Halaman tidak ditemukan!</h3>

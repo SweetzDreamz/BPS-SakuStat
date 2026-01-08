@@ -26,7 +26,9 @@ h6,
   font-family: var(--font-primary) !important;
 }
 
-/* 1. STYLING HALAMAN LOGIN */
+/* =========================================
+   1. STYLING HALAMAN LOGIN
+   ========================================= */
 
 body.login-page {
   background-color: var(--primary-color) !important;
@@ -43,7 +45,6 @@ body.login-page {
   align-items: center;
   justify-content: center;
 
-  /* Update Font */
   font-family: var(--font-primary);
   letter-spacing: 0.3px;
   overflow: hidden;
@@ -77,16 +78,15 @@ body.login-page {
   letter-spacing: 1px;
 }
 
-/* 2. STYLING HALAMAN ADMIN DASHBOARD */
+/* =========================================
+   2. STYLING HALAMAN ADMIN DASHBOARD
+   ========================================= */
 
 body.admin-panel {
   overflow-x: hidden;
   background-color: #f4f6f9;
-
-  /* Update Font */
   font-family: var(--font-primary);
   letter-spacing: 0.3px;
-
   height: auto;
   display: block;
 }
@@ -97,6 +97,7 @@ body.admin-panel {
   align-items: stretch;
 }
 
+/* --- SIDEBAR UTAMA --- */
 #sidebar {
   min-width: 250px;
   max-width: 250px;
@@ -113,24 +114,26 @@ body.admin-panel {
 }
 
 #sidebar .sidebar-header {
-  padding: 11px;
+  padding: 15px 20px; /* Padding sedikit disesuaikan */
   background: #042352;
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #47748b;
   margin-bottom: 0;
   flex-grow: 1;
 }
 
+/* --- LINK MENU (UPDATED: LEBIH COMPACT) --- */
 #sidebar ul li a {
-  padding: 15px 20px;
-  font-size: 1rem;
+  padding: 10px 20px; /* Diperkecil dari 15px agar lebih muat banyak */
+  font-size: 1rem; /* Font sedikit diperkecil */
   display: block;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   transition: 0.3s;
+  position: relative; /* Penting untuk posisi panah dropdown */
 }
 
 #sidebar ul li a:hover,
@@ -140,11 +143,58 @@ body.admin-panel {
   border-left: 4px solid #0d6efd;
 }
 
+/* Icon Menu Utama */
 #sidebar ul li a i {
   margin-right: 10px;
   width: 20px;
   text-align: center;
+  transition: color 0.3s;
 }
+
+/* Warna Icon saat Menu Aktif */
+#sidebar ul li.active > a i {
+  color: #fff !important;
+}
+
+/* --- SUBMENU / DROPDOWN STYLING (BARU) --- */
+
+/* Style link di dalam submenu (anak menu) */
+#sidebar ul ul a {
+  font-size: 0.85rem !important;
+  padding-left: 35px !important; /* Indentasi ke dalam */
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  background: rgba(0, 0, 0, 0.2); /* Background lebih gelap */
+  border-left: none !important; /* Hapus border kiri pada submenu */
+}
+
+#sidebar ul ul a:hover,
+#sidebar ul ul li.active > a {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* --- PANAH DROPDOWN (ANIMASI) --- */
+
+/* Membuat panah chevron menggunakan FontAwesome via CSS */
+#sidebar ul.components li a[data-bs-toggle='collapse']::after {
+  content: '\f078'; /* Kode unicode fa-chevron-down */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%); /* Posisi tengah vertikal default */
+  font-size: 0.7em;
+  transition: transform 0.3s ease;
+}
+
+/* Putar panah saat menu terbuka (expanded) */
+#sidebar ul.components li a[data-bs-toggle='collapse'][aria-expanded='true']::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* --- KONTEN UTAMA --- */
 
 .logout-box {
   padding: 20px;
@@ -186,6 +236,7 @@ table.dataTable tbody td {
   vertical-align: top;
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   #sidebar {
     margin-left: -250px;
