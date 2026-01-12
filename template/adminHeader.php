@@ -21,9 +21,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <style>
-
-    </style>
 
 </head>
 
@@ -61,6 +58,12 @@
                 </a>
             </li>
 
+            <li class="<?php echo ($page == 'data-kuisioner') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kuisioner">
+                    <i class="fa-solid fa-file me-2"></i> Kuisioner
+                </a>
+            </li>
+
             <li class="<?php echo ($page == 'data-kegiatan') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kegiatan">
                     <i class="fa-solid fa-list-check me-2"></i> Kegiatan
@@ -94,8 +97,8 @@
                             <i class="fa-solid fa-comments me-2"></i> Feedback
                         </a>
                     </li>
-                    <li class="<?php echo ($page == 'pertanyaan') ? 'active' : ''; ?>">
-                        <a href="index.php?page=pertanyaan">
+                    <li class="<?php echo ($page == 'data-pertanyaan.php') ? 'active' : ''; ?>">
+                        <a href="index.php?page=data-pertanyaan">
                             <i class="fa-solid fa-circle-question me-2"></i> Pertanyaan
                         </a>
                     </li>

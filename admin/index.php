@@ -28,12 +28,20 @@ switch ($page) {
         include "pages/data-pedoman.php";
         break;
 
+    case 'data-kuisioner':
+        include "pages/data-kuisioner.php";
+        break;
+
     case 'data-pengguna': 
         include "pages/data-pengguna.php";
         break;
 
     case 'feedback':
         include "pages/data-feedback.php";
+        break;
+
+    case 'data-pertanyaan':
+        include "pages/data-pertanyaan.php";
         break;
 
     case 'data-kasusbatas':
