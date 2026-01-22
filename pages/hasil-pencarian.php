@@ -13,39 +13,28 @@
             $halaman        = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
             $halaman_awal   = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
 
-            // 2. LOGIKA SMART SEARCH (PECAH KATA KUNCI)
-            
-            // A. Fungsi Helper untuk membuat query LIKE berulang
+            // 2. LOGIKA SMART SEARCH
             function build_smart_query($conn, $keyword, $column_name) {
-                // 1. Pecah kalimat menjadi array kata
                 $words = explode(" ", $keyword);
-                
-                // 2. Daftar kata sambung (Stopwords) yang akan DIABAIKAN agar pencarian lebih akurat
                 $stopwords = ['dan', 'atau', 'yg', 'yang', 'di', 'ke', 'dari', 'ini', 'itu', 'jika', 'maka','bagaimana','apakah','dimana'];
-                
                 $conditions = [];
                 
                 foreach ($words as $word) {
                     $word = trim($word);
-                    // Hanya proses jika kata bukan stopword dan panjangnya > 1 huruf
                     if (!empty($word) && !in_array(strtolower($word), $stopwords) && strlen($word) > 1) {
                         $word_clean = mysqli_real_escape_string($conn, $word);
                         $conditions[] = "$column_name LIKE '%$word_clean%'";
                     }
                 }
 
-                // Jika setelah difilter tidak ada kata tersisa (misal user cuma ketik "dan"), 
-                // kembalikan ke pencarian exact standar
                 if (empty($conditions)) {
                     $k_aman = mysqli_real_escape_string($conn, $keyword);
                     return "$column_name LIKE '%$k_aman%'";
                 }
-
-                // Gabungkan dengan AND (Semua kata harus ada dalam teks, urutan bebas)
                 return "(" . implode(" AND ", $conditions) . ")";
             }
 
-            // B. Filter Tambahan (Kategori/Responden)
+            // B. Filter Tambahan
             $extra_filter = "";
             if($kategori){
                 $extra_filter .= " AND k.id_kategori = '".mysqli_real_escape_string($koneksi, $kategori)."'";
@@ -59,25 +48,18 @@
                 $extra_filter .= " AND k.level_estimasi IN ('$level_str')";
             }
 
-            // C. Susun Query WHERE
-            // Kita gunakan fungsi build_smart_query di atas
+            // C. Susun Query
             if(!empty($keyword)) {
-                // Untuk Kegiatan: Cari di Nama ATAU Deskripsi
-                // Logic: ( (SmartSearch Nama) OR (SmartSearch Deskripsi) ) AND FilterLain
                 $q_kegiatan_nama = build_smart_query($koneksi, $keyword, 'k.nama_kegiatan');
                 $q_kegiatan_desc = build_smart_query($koneksi, $keyword, 'k.deskripsi_kegiatan');
-                
                 $where_kegiatan = " WHERE ($q_kegiatan_nama OR $q_kegiatan_desc) " . $extra_filter;
 
-                // Untuk Kasus Batas: Cari di Situasi ATAU Jawaban
                 $q_kasus_situasi = build_smart_query($koneksi, $keyword, 'kb.situasi_lapangan');
                 $q_kasus_jawab   = build_smart_query($koneksi, $keyword, 'kb.jawaban_kasusbatas');
-
                 $where_kasus = " WHERE ($q_kasus_situasi OR $q_kasus_jawab) " . $extra_filter;
             } else {
-                // Jika kosong (hanya filter kategori/dll)
                 $where_kegiatan = " WHERE 1=1 " . $extra_filter;
-                $where_kasus    = " WHERE 0=1 "; // Sembunyikan kasus jika tidak ada keyword
+                $where_kasus    = " WHERE 0=1 "; 
             }
 
             // D. Query UNION
@@ -129,8 +111,8 @@
                         Menampilkan <?= mysqli_num_rows($result); ?> dari total <?= $jumlah_data; ?> data gabungan.
                     </p>
                 </div>
-                <button type="button" class="btn btn-outline-success btn-sm px-3" data-bs-toggle="modal" data-bs-target="#modalFilter">
-                    <i class="fa-solid fa-filter me-1"></i> Filter Pencarian
+                <button type="button" class="btn btn-outline-success btn-sm p-2" data-bs-toggle="modal" data-bs-target="#modalFilter">
+                    <i class="fa-solid fa-filter me-1"></i>
                 </button>
             </div>
 
@@ -147,10 +129,7 @@
                             ?>
                                 <tr class="border-bottom">
                                     <td class="px-4 py-4">
-                                        <div class="d-flex align-items-center gap-2 mb-2">
-                                            <span class="badge <?= $bg_badge; ?> rounded-1">
-                                                <i class="fa-solid <?= $icon_badge; ?> me-1"></i> <?= $data['tipe_hasil']; ?>
-                                            </span>
+                                        <div class="mb-2">
                                             <h4 class="mb-0 fs-5">
                                                 <a href="index.php?p=detail-kegiatan&id=<?= $data['id_link']; ?>" class="text-decoration-none text-dark fw-bold">
                                                     <?= $data['judul_utama']; ?>
@@ -165,26 +144,34 @@
                                             
                                             <?php 
                                                 $desc = strip_tags($data['deskripsi_tampil']);
-                                                // Potong dulu biar tidak kepanjangan
                                                 $desc_cut = substr($desc, 0, 300); 
                                                 echo $desc_cut . "..."; 
                                             ?>
                                         </div>
 
-                                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                            <div>
-                                                <span class="badge bg-info bg-opacity-10 text-info border border-info">
+                                        <div class="d-flex justify-content-between align-items-end flex-wrap gap-2">
+                                            
+                                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                                
+                                                <span class="badge <?= $bg_badge; ?> rounded-1 py-2 px-3">
+                                                    <i class="fa-solid <?= $icon_badge; ?> me-1"></i> <?= $data['tipe_hasil']; ?>
+                                                </span>
+
+                                                <span class="badge bg-info bg-opacity-10 text-info border border-info py-2 px-3">
                                                     <i class="fa-solid fa-tag me-1"></i> <?= $data['nama_kategori']; ?>
                                                 </span>
-                                                <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary ms-1">
+                                                
+                                                <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary py-2 px-3">
                                                     <i class="fa-solid fa-user-group me-1"></i> <?= $data['responden']; ?>
                                                 </span>
-                                                <span class="badge bg-success bg-opacity-10 text-success border border-success ms-1">
+                                                
+                                                <span class="badge bg-success bg-opacity-10 text-success border border-success py-2 px-3">
                                                     <i class="fa-solid fa-layer-group me-1"></i> <?= $data['level_estimasi']; ?>
                                                 </span>
                                             </div>
-                                            <div>
-                                                <a href="index.php?p=detail-kegiatan&id=<?= $data['id_link']; ?>" class="btn btn-outline-primary btn-sm rounded-1 px-3">
+
+                                            <div class="mt-2 mt-md-0">
+                                                <a href="index.php?p=detail-kegiatan&id=<?= $data['id_link']; ?>" class="btn btn-outline-primary btn-sm rounded-1 px-3 text-nowrap">
                                                     Lihat Detail <i class="fa-solid fa-arrow-right ms-1"></i>
                                                 </a>
                                             </div>

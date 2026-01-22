@@ -58,12 +58,6 @@
                 </a>
             </li>
 
-            <li class="<?php echo ($page == 'data-kuisioner') ? 'active' : ''; ?>">
-                <a href="index.php?page=data-kuisioner">
-                    <i class="fa-solid fa-file me-2"></i> Kuisioner
-                </a>
-            </li>
-
             <li class="<?php echo ($page == 'data-kegiatan') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kegiatan">
                     <i class="fa-solid fa-list-check me-2"></i> Kegiatan
@@ -73,6 +67,12 @@
             <li class="<?php echo ($page == 'data-kasusbatas') ? 'active' : ''; ?>">
                 <a href="index.php?page=data-kasusbatas">
                     <i class="fa-solid fa-scale-balanced me-2"></i> Kasus Batas
+                </a>
+            </li>
+
+            <li class="<?php echo ($page == 'data-kuisioner') ? 'active' : ''; ?>">
+                <a href="index.php?page=data-kuisioner">
+                    <i class="fa-solid fa-file me-2"></i> Kuisioner
                 </a>
             </li>
             

@@ -6,9 +6,14 @@
                 <i class="fas fa-scale-balanced me-1"></i>
                 <b>Data Kasus Batas</b>
             </div>
-            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahKasus">
-                <i class="fa-solid fa-plus me-1"></i> Tambah Kasus
-            </button>
+            <div>
+                <button class="btn btn-success btn-sm me-1" data-bs-toggle="modal" data-bs-target="#importKasus">
+                    <i class="fa-solid fa-file-excel me-1"></i> Import Excel
+                </button>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#tambahKasus">
+                    <i class="fa-solid fa-plus me-1"></i> Tambah Kasus
+                </button>
+            </div>
         </div>  
         <div class="card-body">
             <div class="table-responsive">
@@ -154,6 +159,38 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                     <button type="submit" name="add_kasusbatas" class="btn btn-primary btn-simpan">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="importKasus" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">
+                    <i class="fa-solid fa-file-import me-2"></i>Import Data Excel
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="pages/proses-kasusbatas/import-data-kasusbatas.php" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="alert alert-info small">
+                        <strong>Aturan File Excel:</strong><br>
+                        1. Format file harus <b>.xlsx</b> atau <b>.xls</b><br>
+                        2. Baris pertama adalah JUDUL KOLOM (tidak akan diimport).<br>
+                        3. Urutan Kolom: <b>situasi_lapangan | jawaban_kasusbatas | id_kegiatan</b>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Pilih File Excel</label>
+                        <input type="file" name="file_excel" class="form-control" accept=".xlsx, .xls" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" name="import_data" class="btn btn-success btn-simpan">Import Sekarang</button>
                 </div>
             </form>
         </div>

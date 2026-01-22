@@ -163,3 +163,32 @@ footer strong {
     max-width: 150px;
   }
 }
+
+@media (max-width: 767px) {
+  /* 1. Mengatur Posisi Wrapper Show Entries & Search */
+  div.dataTables_wrapper div.dataTables_length,
+  div.dataTables_wrapper div.dataTables_filter {
+    text-align: left !important; /* Paksa rata kiri */
+    margin-bottom: 10px; /* Beri jarak antar elemen */
+    width: 100%; /* Paksa lebar penuh */
+  }
+
+  /* 2. Mengatur Input Search agar Full Width & Mudah diketik di HP */
+  div.dataTables_wrapper div.dataTables_filter input {
+    width: 100% !important;
+    margin-left: 0 !important;
+    display: block;
+  }
+
+  /* 3. Mengatur Select Show Entries agar Full Width juga (Opsional, agar seragam) */
+  div.dataTables_wrapper div.dataTables_length select {
+    width: 50% !important; /* Atau 100% jika ingin full */
+    display: inline-block;
+  }
+
+  /* 4. Mengatur Pagination agar tidak tumpuk */
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+}

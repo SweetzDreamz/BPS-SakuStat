@@ -99,7 +99,7 @@
                                                                 <select name="id_kategori" class="form-select" required>
                                                                     <option value="">-- Pilih Kategori --</option>
                                                                     <?php                                                                 
-                                                                    // Kita perlu reset pointer query atau query ulang untuk kategori agar dropdown muncul di setiap modal
+                                                                    
                                                                     $sqlK_edit = mysqli_query($koneksi, "SELECT * FROM tb_kategori ORDER BY nama_kategori ASC");
                                                                     while($kat_edit = mysqli_fetch_assoc($sqlK_edit)){
                                                                         $selected = ($kat_edit['id_kategori'] == $data['id_kategori']) ? "selected" : "";
@@ -110,7 +110,7 @@
                                                             </div>
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="form-label fw-bold">Pedoman Referensi</label>
-                                                                <select name="id_pedoman" class="form-select" required>
+                                                                <select name="id_pedoman" class="form-select">
                                                                     <option value="">-- Pilih Pedoman --</option>
                                                                     <?php
                                                                     $sqlP_edit = mysqli_query($koneksi, "SELECT * FROM tb_pedoman ORDER BY nama_pedoman ASC");
@@ -120,7 +120,7 @@
                                                                     }
                                                                     ?>
                                                                 </select>
-                                                            </div>
+                                                            </div>  
                                                         </div>
 
                                                         <div class="row">
