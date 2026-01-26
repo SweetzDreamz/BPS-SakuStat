@@ -1,5 +1,5 @@
 <?php
-// 1. TANGKAP ID KEGIATAN (Wajib ada)
+// 1. TANGKAP ID KEGIATAN
 $id_kegiatan = isset($_GET['id']) ? mysqli_real_escape_string($koneksi, $_GET['id']) : '';
 
 $alert_status = "";
@@ -22,15 +22,14 @@ if(isset($_POST['kirim_pertanyaan'])){
             $alert_status = "error";
             $alert_message = "Gagal mengirim pertanyaan.";
             $alert_error = mysqli_error($koneksi);
-        }
+        } 
     } else {
         $alert_status = "error";
         $alert_message = "Gagal: ID Kegiatan tidak ditemukan.";
     }
 }
 
-// 3. QUERY UTAMA (HANYA AMBIL DETAIL KEGIATAN & PEDOMAN)
-// REVISI: Saya menghapus JOIN tb_kuisioner dari sini agar tidak error logic
+// 3. QUERY UTAMA
 $query = "SELECT k.*, c.nama_kategori, p.nama_pedoman, p.link_pedoman, p.cover_pedoman 
           FROM tb_kegiatan k
           LEFT JOIN tb_kategori c ON k.id_kategori = c.id_kategori
@@ -160,11 +159,9 @@ if (!$data) {
                             <h4 class="fw-bold text-primary mb-4 border-bottom pb-2">Daftar Kuisioner</h4>
                             
                             <?php 
-                            // REVISI: Query khusus untuk mengambil SEMUA kuisioner berdasarkan id_kegiatan
                             $q_kuis = mysqli_query($koneksi, "SELECT * FROM tb_kuisioner WHERE id_kegiatan = '$id_kegiatan' ORDER BY id_kuisioner ASC");
                             
                             if(mysqli_num_rows($q_kuis) > 0) {
-                                // Loop untuk menampilkan jika kuisioner lebih dari 1
                                 while($kuis = mysqli_fetch_assoc($q_kuis)) {
                             ?>
                                 <div class="card mb-3 bg-light">
@@ -192,7 +189,7 @@ if (!$data) {
                                     </div>
                                 </div>
                             <?php 
-                                } // End While
+                                } 
                             } else { 
                             ?>
                                 <div class="alert alert-secondary text-center py-4">
@@ -266,7 +263,6 @@ if (!$data) {
         }
     });
 
-    // SweetAlert Logic
     <?php if ($alert_status != ""): ?>
         const status = <?= json_encode($alert_status); ?>;
         const message = <?= json_encode($alert_message); ?>;

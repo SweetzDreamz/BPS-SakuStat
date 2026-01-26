@@ -11,42 +11,39 @@
     </div>
 
     <?php
-    // --- 1. LOGIKA QUERY DATA ---
-    $sql_feedback = mysqli_query($koneksi, "SELECT * FROM tb_feedback");
-    $jml_feedback = mysqli_num_rows($sql_feedback);
+    // --- 1. LOGIKA QUERY DATA (OPTIMIZED) ---
+    function getCount($conn, $table){
+        $sql = mysqli_query($conn, "SELECT COUNT(*) as total FROM $table");
+        return ($sql) ? mysqli_fetch_assoc($sql)['total'] : 0;
+    }
 
+    $jml_feedback   = getCount($koneksi, 'tb_feedback');
+    $jml_kegiatan   = getCount($koneksi, 'tb_kegiatan');
+    $jml_kasus      = getCount($koneksi, 'tb_kasusbatas');
+    $jml_pedoman    = getCount($koneksi, 'tb_pedoman');
+    $jml_pengunjung = getCount($koneksi, 'tb_pengunjung');
 
-    $sql_kegiatan = mysqli_query($koneksi, "SELECT * FROM tb_kegiatan");
-    $jml_kegiatan = mysqli_num_rows($sql_kegiatan);
-
-    $sql_kasus = mysqli_query($koneksi, "SELECT * FROM tb_kasusbatas");
-    $jml_kasus = mysqli_num_rows($sql_kasus);
-
-
-    $sql_pedoman = mysqli_query($koneksi, "SELECT * FROM tb_pedoman");
-    $jml_pedoman = mysqli_num_rows($sql_pedoman);
-
-    $sql_pengunjung = mysqli_query($koneksi, "SELECT * FROM tb_pengunjung");
-    $jml_pengunjung = mysqli_num_rows($sql_pengunjung);
-
+    // --- 2. LOGIKA CHART (FIXED SQL MODE) ---
     $query_chart = "SELECT DATE_FORMAT(tanggal, '%M %Y') as bulan, COUNT(*) as jumlah 
                     FROM tb_pengunjung 
                     GROUP BY DATE_FORMAT(tanggal, '%Y-%m') 
-                    ORDER BY tanggal ASC 
+                    ORDER BY DATE_FORMAT(tanggal, '%Y-%m') ASC 
                     LIMIT 6";
+    
     $result_chart = mysqli_query($koneksi, $query_chart);
 
     $labels = [];
     $data_chart = [];
 
-    while ($row = mysqli_fetch_assoc($result_chart)) {
-        $labels[] = $row['bulan']; 
-        $data_chart[] = $row['jumlah'];
+    if($result_chart){
+        while ($row = mysqli_fetch_assoc($result_chart)) {
+            $labels[] = $row['bulan']; 
+            $data_chart[] = $row['jumlah'];
+        }
     }
     ?>
 
     <div class="row">
-        
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card bg-warning text-white shadow-sm h-100 dashboard-card">
                 <div class="card-body d-flex align-items-center justify-content-between">
@@ -110,13 +107,12 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="row">
-        
         <div class="col-xl-8">
-            <div class="card mb-4 shadow-sm border-0 h-100"> <div class="card-header bg-white">
+            <div class="card mb-4 shadow-sm border-0 h-100"> 
+                <div class="card-header bg-white">
                     <i class="fas fa-chart-area me-1 text-primary"></i>
                     <b>Statistik Pengunjung (Per Bulan)</b>
                 </div>
@@ -127,8 +123,8 @@
         </div>
 
         <div class="col-xl-4">
-            <div class="card mb-4 shadow-sm border-0 h-100"> <div class="card-body p-4 d-flex flex-column justify-content-center">
-                    
+            <div class="card mb-4 shadow-sm border-0 h-100"> 
+                <div class="card-body p-4 d-flex flex-column justify-content-center">
                     <div class="text-center mb-4 pb-4 border-bottom">
                         <h6 class="text-secondary text-uppercase fw-bold mb-1">Total Traffic</h6>
                         <h1 class="display-4 fw-bold text-dark my-0"><?= number_format($jml_pengunjung); ?></h1>
@@ -148,17 +144,18 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script>
+    // Set font family default
+    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#292b2c';
+
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -191,6 +188,7 @@
                         min: 0,
                         maxTicksLimit: 5,
                         padding: 10,
+                        // Fix: Memastikan angka bulat (tidak ada 0.5 orang)
                         callback: function(value) { if (value % 1 === 0) { return value; } }
                     },
                     gridLines: { color: "rgba(0, 0, 0, .125)" }
