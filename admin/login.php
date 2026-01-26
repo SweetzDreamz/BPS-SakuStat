@@ -2,6 +2,7 @@
 session_start();
 include "../config/koneksi.php";
 
+// 1. Cek jika user sudah login, langsung alihkan ke index/dashboard
 if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
     header("location:index.php");
     exit;
@@ -10,21 +11,31 @@ if (isset($_SESSION['status']) && $_SESSION['status'] == "login") {
 $pesan = "";
 
 if (isset($_POST['login'])) {
+    // 2. Ambil inputan user
     $nip = mysqli_real_escape_string($koneksi, $_POST['nip']);
     $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
+    // 3. Cek ke Database (Hanya cek NIP dan Password)
     $query = mysqli_query($koneksi, "SELECT * FROM tb_user WHERE nip='$nip' AND password='$password'");
     $cek = mysqli_num_rows($query);
 
     if ($cek > 0) {
         $data = mysqli_fetch_assoc($query);
         
+        // 4. SET SESSION
         $_SESSION['nip'] = $data['nip'];
         $_SESSION['nama'] = $data['nama'];
-        $_SESSION['role'] = $data['role'];
         $_SESSION['status'] = "login";
+        
+        // --- PERBAIKAN DISINI ---
+        // Karena tidak ada kolom 'role' di database, kita set manual saja.
+        // Tujuannya agar jika ada halaman lain yang mengecek $_SESSION['role'], tidak terjadi error.
+        $_SESSION['role'] = 'admin'; 
+        // ------------------------
 
+        // 5. Redirect ke Dashboard
         header("location:index.php");
+        exit;
     } else {
         $pesan = "NIP atau Password salah!";
     }
@@ -41,8 +52,6 @@ if (isset($_POST['login'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
-    
-    
 </head>
 <body class="login-page">
 
@@ -50,8 +59,8 @@ if (isset($_POST['login'])) {
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 
-                <div class="card card-login bg-white">
-                    <div class="login-header">
+                <div class="card card-login bg-white shadow-sm mt-5">
+                    <div class="login-header text-center pt-4">
                         <h4 class="fw-bold text-primary">SakuStat</h4>
                         <p class="text-muted small mb-0">Administrator</p>
                     </div>
@@ -66,17 +75,17 @@ if (isset($_POST['login'])) {
 
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label class="form-label ms-2 small text-muted fw-bold">Email Address</label>
+                                <label class="form-label ms-2 small text-muted fw-bold">NIP / Username</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-transparent border-end-0 rounded-start-pill ps-3"><i class="fa-solid fa-envelope text-muted"></i></span>
-                                    <input type="text" name="nip" class="form-control border-start-0 ps-2" placeholder="Masukkan NIP anda" required>
+                                    <span class="input-group-text bg-transparent border-end-0 ps-3"><i class="fa-solid fa-user text-muted"></i></span>
+                                    <input type="text" name="nip" class="form-control border-start-0 ps-2" placeholder="Masukkan NIP" required>
                                 </div>
                             </div>
                             
                             <div class="mb-4">
                                 <label class="form-label ms-2 small text-muted fw-bold">Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-transparent border-end-0 rounded-start-pill ps-3"><i class="fa-solid fa-lock text-muted"></i></span>
+                                    <span class="input-group-text bg-transparent border-end-0 ps-3"><i class="fa-solid fa-lock text-muted"></i></span>
                                     <input type="password" name="password" class="form-control border-start-0 ps-2" placeholder="********" required>
                                 </div>
                             </div>
