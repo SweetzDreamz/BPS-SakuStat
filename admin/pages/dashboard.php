@@ -11,8 +11,10 @@
     </div>
 
     <?php
-    // --- 1. LOGIKA QUERY DATA (OPTIMIZED) ---
+    // --- 1. FUNGSI HITUNG CEPAT (Optimasi Server) ---
+    // Fungsi ini menggantikan mysqli_num_rows(SELECT *) yang berat
     function getCount($conn, $table){
+        // Gunakan COUNT(*) agar database tidak perlu meload seluruh data
         $sql = mysqli_query($conn, "SELECT COUNT(*) as total FROM $table");
         return ($sql) ? mysqli_fetch_assoc($sql)['total'] : 0;
     }
@@ -23,8 +25,11 @@
     $jml_pedoman    = getCount($koneksi, 'tb_pedoman');
     $jml_pengunjung = getCount($koneksi, 'tb_pengunjung');
 
-    // --- 2. LOGIKA CHART (FIXED SQL MODE) ---
-    $query_chart = "SELECT DATE_FORMAT(tanggal, '%M %Y') as bulan, COUNT(*) as jumlah 
+    // --- 2. LOGIKA CHART (SOLUSI FIX SQL STRICT MODE) ---
+    // Strategi: Ambil format angka (Y-m) di SQL agar bisa di-grouping, 
+    // lalu ubah jadi nama bulan di PHP.
+    
+    $query_chart = "SELECT DATE_FORMAT(tanggal, '%Y-%m') as periode, COUNT(*) as jumlah 
                     FROM tb_pengunjung 
                     GROUP BY DATE_FORMAT(tanggal, '%Y-%m') 
                     ORDER BY DATE_FORMAT(tanggal, '%Y-%m') ASC 
@@ -37,7 +42,15 @@
 
     if($result_chart){
         while ($row = mysqli_fetch_assoc($result_chart)) {
-            $labels[] = $row['bulan']; 
+            // $row['periode'] isinya misal "2025-01"
+            
+            // Ubah menjadi format Tanggal PHP agar bisa diformat jadi nama bulan
+            // Kita tambahkan "-01" agar menjadi tanggal lengkap "2025-01-01"
+            $timestamp = strtotime($row['periode'] . "-01");
+            
+            // Format ulang menjadi "January 2025" (F Y)
+            $labels[] = date('F Y', $timestamp); 
+            
             $data_chart[] = $row['jumlah'];
         }
     }
@@ -151,8 +164,9 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
 <script>
-    // Set font family default
+    // Set default font
     Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#292b2c';
 
@@ -188,7 +202,7 @@
                         min: 0,
                         maxTicksLimit: 5,
                         padding: 10,
-                        // Fix: Memastikan angka bulat (tidak ada 0.5 orang)
+                        // Pastikan angka bulat di sumbu Y
                         callback: function(value) { if (value % 1 === 0) { return value; } }
                     },
                     gridLines: { color: "rgba(0, 0, 0, .125)" }
