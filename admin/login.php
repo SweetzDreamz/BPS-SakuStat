@@ -27,11 +27,7 @@ if (isset($_POST['login'])) {
         $_SESSION['nama'] = $data['nama'];
         $_SESSION['status'] = "login";
         
-        // --- PERBAIKAN DISINI ---
-        // Karena tidak ada kolom 'role' di database, kita set manual saja.
-        // Tujuannya agar jika ada halaman lain yang mengecek $_SESSION['role'], tidak terjadi error.
         $_SESSION['role'] = 'admin'; 
-        // ------------------------
 
         // 5. Redirect ke Dashboard
         header("location:index.php");

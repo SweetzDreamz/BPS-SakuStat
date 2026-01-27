@@ -1,10 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" >
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
   <div class="container-fluid px-5 navbar-container">
-    <a class="navbar-brand fw-bold" href="index.php">
-        <img src="assets/img/bps.png" alt="contoh" width="30" height="30">
-        <i class="fa-solid fa-chart-simple me-2"></i><i>BPS KOTA BOGOR</i>
-    </a>
     
+    <a class="navbar-brand d-flex align-items-center" href="index.php">
+        <img src="assets/img/bps.png" alt="Logo BPS" width="38" height="30" class="d-inline-block align-text-top me-2">
+        
+        <div class="d-flex flex-column text-start">
+            <span class="fw-bold" style="font-size: 0.65rem; line-height: 1.1; letter-spacing: 0.5px;">BADAN PUSAT STATISTIK</span>
+            <span class="fw-bold" style="font-size: 0.85rem; line-height: 1.1;">KOTA BOGOR</span>
+        </div>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
