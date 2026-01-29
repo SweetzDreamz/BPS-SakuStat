@@ -26,7 +26,8 @@ if (isset($_POST['add_pedoman'])) {
 
 
     // 3. LOGIKA UPLOAD GAMBAR
-    $nama_file_db = "NULL"; // Default jika tidak ada gambar
+// 3. LOGIKA UPLOAD GAMBAR
+    $nama_file_db = "NULL"; 
 
     if(isset($_FILES['cover']) && $_FILES['cover']['error'] === UPLOAD_ERR_OK) {
         $nama_file = $_FILES['cover']['name'];
@@ -38,17 +39,26 @@ if (isset($_POST['add_pedoman'])) {
         $ekstensi = strtolower(end($dot));
 
         if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
-            if($ukuran < 2048000){ // Max 2MB
+            if($ukuran < 2048000){ 
                 
-                // Rename file: P002_173922.png
                 $nama_file_baru = $id_baru . '_' . time() . '.' . $ekstensi;
                 
-                // Pindah file ke folder tujuan
-                // Pastikan folder: assets/img/cover-pedoman/ SUDAH ADA
-                if(move_uploaded_file($file_tmp, '../../../assets/img/cover-pedoman/'.$nama_file_baru)){
-                    $nama_file_db = "'$nama_file_baru'"; // Tambahkan tanda kutip untuk SQL
+                // --- PERBAIKAN DISINI: Tentukan folder tujuan ---
+                $folder_tujuan = '../../../assets/img/cover-pedoman/';
+                
+                // Cek apakah folder ada? Jika tidak, BUAT FOLDERNYA
+                if (!file_exists($folder_tujuan)) {
+                    // 0755 adalah permission standar, true untuk recursive creation
+                    mkdir($folder_tujuan, 0755, true); 
+                }
+
+                // Pindah file
+                if(move_uploaded_file($file_tmp, $folder_tujuan . $nama_file_baru)){
+                    $nama_file_db = "'$nama_file_baru'"; 
                 } else {
-                    echo "<script>alert('Gagal upload gambar! Periksa permission folder.'); window.location.href='../../index.php?page=data-pedoman';</script>";
+                    // Tampilkan error spesifik php untuk debugging
+                    $error_upload = error_get_last();
+                    echo "<script>alert('Gagal upload! Error: " . $error_upload['message'] . "'); window.location.href='../../index.php?page=data-pedoman';</script>";
                     exit;
                 }
             } else {
