@@ -43,31 +43,29 @@ if (isset($_POST['add_pedoman'])) {
                 
                 $nama_file_baru = $id_baru . '_' . time() . '.' . $ekstensi;
                 
-                // --- PERBAIKAN DISINI: Tentukan folder tujuan ---
+                // DEFINISI FOLDER TUJUAN
                 $folder_tujuan = '../../../assets/img/cover-pedoman/';
                 
-                // Cek apakah folder ada? Jika tidak, BUAT FOLDERNYA
+                // --- PERBAIKAN PENTING: CEK & BUAT FOLDER OTOMATIS ---
                 if (!file_exists($folder_tujuan)) {
-                    // 0755 adalah permission standar, true untuk recursive creation
+                    // Buat folder jika belum ada (Recursive = true)
                     mkdir($folder_tujuan, 0755, true); 
                 }
+                // -----------------------------------------------------
 
                 // Pindah file
                 if(move_uploaded_file($file_tmp, $folder_tujuan . $nama_file_baru)){
                     $nama_file_db = "'$nama_file_baru'"; 
                 } else {
-                    // Tampilkan error spesifik php untuk debugging
-                    $error_upload = error_get_last();
-                    echo "<script>alert('Gagal upload! Error: " . $error_upload['message'] . "'); window.location.href='../../index.php?page=data-pedoman';</script>";
+                    // Debugging Error PHP
+                    $error = error_get_last();
+                    echo "<script>alert('Gagal upload! Folder tujuan mungkin tidak ada. Detail: " . $error['message'] . "'); window.location.href='../../index.php?page=data-pedoman';</script>";
                     exit;
                 }
             } else {
-                echo "<script>alert('Ukuran gambar terlalu besar (Max 2MB)!'); window.location.href='../../index.php?page=data-pedoman';</script>";
+                echo "<script>alert('Ukuran terlalu besar!'); window.location.href='../../index.php?page=data-pedoman';</script>";
                 exit;
             }
-        } else {
-            echo "<script>alert('Format gambar harus JPG atau PNG!'); window.location.href='../../index.php?page=data-pedoman';</script>";
-            exit;
         }
     }
 
